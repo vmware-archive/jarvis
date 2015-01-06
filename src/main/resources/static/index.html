@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Jarvis</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/core.css"/>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css" rel="stylesheet">
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
-        <script src="js/cta.js"></script>
-        <script src="js/allocations.js"></script>
-        <script src="js/messages.js"></script>
-        <script src="js/pivots.js"></script>
-        <script src="js/weather.js"></script>
-        <meta name="viewport" content="width=1080">
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    </head>
-    <body>
-        <div class="panel-container">
-            <div class="panel panel-cta" ng-controller="CTAPanelController">
-                <ul class="predictions">
-                    <li ng-repeat="prediction in predictions" class="line-{{prediction.line}}">
-                        <h1>{{prediction.station}}</h1>
-                        <ul class="directions">
-                            <li ng-repeat="(destination, times) in prediction.destinations">
-                                <h2>{{destination}}</h2>
-                                <ol class="times">
-                                    <li ng-repeat="time in times" ng-bind-html="trust(time.locale('en-terse').fromNow())"/>
-                                </ol>
-                            </li>
-                        </ul>
+<head>
+    <title>Jarvis</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/core.css"/>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
+    <script src="js/cta.js"></script>
+    <script src="js/allocations.js"></script>
+    <script src="js/messages.js"></script>
+    <script src="js/pivots.js"></script>
+    <script src="js/weather.js"></script>
+    <meta name="viewport" content="width=1080">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+</head>
+<body>
+<div class="panel-container">
+    <div class="panel panel-cta" ng-controller="CTAPanelController">
+        <ul class="predictions">
+            <li ng-repeat="prediction in predictions">
+                <h1><span>{{prediction.station | limitTo:1}}</span><br/>{{prediction.station}}</h1>
+                <ul class="directions">
+                    <li ng-repeat="(destination, times) in prediction.destinations">
+                        <h2 class="line-{{prediction.line}}">to {{destination}}</h2>
+                        <ol class="times">
+                            <li ng-repeat="time in times" ng-bind-html="trust(time.locale('en-terse').fromNow())"/>
+                        </ol>
                     </li>
                 </ul>
-                <i class="fa fa-bus"></i>
-            </div>
+            </li>
+        </ul>
+        <i class="fa fa-bus"></i>
+    </div>
 
-            <div class="panel panel-allocations" ng-controller="AllocationsPanelController">
-                <ul class="projects">
-                    <li ng-repeat="project in projects">
-                        <name>{{project.name}}</name>
-                        <div class="pivots">
-                            <ul ng-repeat="week in project.pivotsByWeek">
-                                <li ng-repeat="pivot in week"><jv-pivot email="{{pivot.email}}"/></li>
-                            </ul>
-                        </div>
-                    </li>
+    <div class="panel panel-allocations" ng-controller="AllocationsPanelController">
+        <ul class="projects">
+            <li ng-repeat="project in projects">
+                <name>{{project.name}}</name>
+                <div class="pivots">
+                    <ul ng-repeat="week in project.pivotsByWeek">
+                        <li ng-repeat="pivot in week"><jv-pivot email="{{pivot.email}}"/></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <i class="fa fa-users"></i>
+    </div>
+
+    <div class="panel panel-weather" ng-controller="WeatherPanelController">
+        <div class="wrapper" ng-if="forecast">
+            <jv-weather-icon class="current-icon" ng-attr-icon="{{forecast.currently.icon}}"></jv-weather-icon>
+            <h1>{{forecast.currently.apparentTemperature | number:0}}<i class="wi wi-fahrenheit"></i></h1>
+            <p>{{forecast.minutely.summary}}</p>
+            <p>{{forecast.hourly.summary}}</p>
+            <table>
+                <tbody>
+                <tr ng-repeat="hour in forecast.hourly.data | limitTo:3">
+                    <th>{{hour.time | moment:'h' }}&thinsp;<sup>{{hour.time | moment:'a' }}</sup></th>
+                    <td><jv-weather-icon ng-attr-icon="{{hour.icon}}"></jv-weather-icon></td>
+                    <td>{{hour.apparentTemperature | number:0}}<i class="wi wi-fahrenheit"></i></td>
+                    <td><i class="wi wi-sprinkles"></i>&thinsp;{{hour.precipProbability * 100}}<sup>%</sup></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel panel-messages" ng-controller="MessagesPanelController">
+        <div class="track">
+            <div class="sled">
+                <ul class="messages" scrolling>
+                    <li ng-repeat="message in messages"><jv-pivot phone="{{message.from}}"></jv-pivot> {{message.body}}</li><li class="end" ng-if="messages">|</li>
                 </ul>
-                <i class="fa fa-users"></i>
-            </div>
-
-            <div class="panel panel-weather" ng-controller="WeatherPanelController">
-                <div class="wrapper" ng-if="forecast">
-                    <jv-weather-icon class="current-icon" ng-attr-icon="{{forecast.currently.icon}}"></jv-weather-icon>
-                    <h1>{{forecast.currently.apparentTemperature | number:0}}<i class="wi wi-fahrenheit"></i></h1>
-                    <p>{{forecast.minutely.summary}}</p>
-                    <p>{{forecast.hourly.summary}}</p>
-                    <table>
-                        <tbody>
-                            <tr ng-repeat="hour in forecast.hourly.data | limitTo:3">
-                                <th>{{hour.time | moment:'h' }}&thinsp;<sup>{{hour.time | moment:'a' }}</sup></th>
-                                <td><jv-weather-icon ng-attr-icon="{{hour.icon}}"></jv-weather-icon></td>
-                                <td>{{hour.apparentTemperature | number:0}}<i class="wi wi-fahrenheit"></i></td>
-                                <td><i class="wi wi-sprinkles"></i>&thinsp;{{hour.precipProbability * 100}}<sup>%</sup></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="panel panel-messages" ng-controller="MessagesPanelController">
-                <div class="track">
-                    <div class="sled">
-                        <ul class="messages" scrolling>
-                            <li ng-repeat="message in messages"><jv-pivot phone="{{message.from}}"></jv-pivot> {{message.body}}</li><li class="end" ng-if="messages">|</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="number-to-sms"><i class="fa fa-mobile"></i> {{numberToSMS}}</div>
             </div>
         </div>
+        <div class="number-to-sms"><i class="fa fa-mobile"></i> {{numberToSMS}}</div>
+    </div>
+</div>
 
-        <script>
-            angular.bootstrap(document, ['JarvisCTA', 'JarvisAllocations', 'JarvisMessages', 'JarvisPivots', 'JarvisWeather']);
-        </script>
-    </body>
+<script>
+    angular.bootstrap(document, ['JarvisCTA', 'JarvisAllocations', 'JarvisMessages', 'JarvisPivots', 'JarvisWeather']);
+</script>
+</body>
 </html>
