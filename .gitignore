@@ -1,0 +1,8 @@
+target/
+
+# IntelliJ
+*.iml
+.idea/
+
+src/main/resources/pivots.json
+application.properties

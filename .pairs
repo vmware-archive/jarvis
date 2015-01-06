@@ -1,0 +1,9 @@
+pairs:
+  # <initials>: <Firstname> <Lastname>[; <email-id>]
+  zc: Zac Clark
+  da: Damon Anderson
+  lm: Luke Mueller
+  jc: Jared Carroll
+email:
+  prefix: pair
+  domain: pivotal.io

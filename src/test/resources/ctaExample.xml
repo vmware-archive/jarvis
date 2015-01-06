@@ -1,0 +1,110 @@
+<ctatt>
+    <tmst>20141020 11:50:02</tmst>
+    <errCd>0</errCd>
+    <errNm/>
+    <eta>
+        <staId>40460</staId>
+        <stpId>30091</stpId>
+        <staNm>Merchandise Mart</staNm>
+        <stpDe>Service toward Loop</stpDe>
+        <rn>408</rn>
+        <rt>Brn</rt>
+        <destSt>30249</destSt>
+        <destNm>Loop</destNm>
+        <trDr>5</trDr>
+        <prdt>20141020 11:49:20</prdt>
+        <arrT>20141020 11:52:20</arrT>
+        <isApp>0</isApp>
+        <isSch>0</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags/>
+        <lat>41.89678</lat>
+        <lon>-87.63595</lon>
+        <heading>127</heading>
+    </eta>
+    <eta>
+        <staId>40460</staId>
+        <stpId>30091</stpId>
+        <staNm>Merchandise Mart</staNm>
+        <stpDe>Service toward Loop</stpDe>
+        <rn>415</rn>
+        <rt>Brn</rt>
+        <destSt>30249</destSt>
+        <destNm>Loop</destNm>
+        <trDr>5</trDr>
+        <prdt>20141020 11:49:28</prdt>
+        <arrT>20141020 11:58:28</arrT>
+        <isApp>0</isApp>
+        <isSch>0</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags/>
+        <lat>41.91035</lat>
+        <lon>-87.64423</lon>
+        <heading>89</heading>
+    </eta>
+    <eta>
+        <staId>40460</staId>
+        <stpId>30090</stpId>
+        <staNm>Merchandise Mart</staNm>
+        <stpDe>Service toward Kimball or Linden</stpDe>
+        <rn>407</rn>
+        <rt>Brn</rt>
+        <destSt>30249</destSt>
+        <destNm>Kimball</destNm>
+        <trDr>1</trDr>
+        <prdt>20141020 11:49:35</prdt>
+        <arrT>20141020 11:59:35</arrT>
+        <isApp>0</isApp>
+        <isSch>0</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags/>
+        <lat>41.87692</lat>
+        <lon>-87.62779</lon>
+        <heading>87</heading>
+    </eta>
+    <eta>
+        <staId>40460</staId>
+        <stpId>30090</stpId>
+        <staNm>Merchandise Mart</staNm>
+        <stpDe>Service toward Kimball or Linden</stpDe>
+        <rn>408</rn>
+        <rt>Brn</rt>
+        <destSt>0</destSt>
+        <destNm>Kimball</destNm>
+        <trDr>1</trDr>
+        <prdt>20141020 11:49:41</prdt>
+        <arrT>20141020 12:04:41</arrT>
+        <isApp>0</isApp>
+        <isSch>1</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags/>
+        <lat/>
+        <lon/>
+        <heading/>
+    </eta>
+    <eta>
+        <staId>40460</staId>
+        <stpId>30091</stpId>
+        <staNm>Merchandise Mart</staNm>
+        <stpDe>Service toward Loop</stpDe>
+        <rn>409</rn>
+        <rt>Brn</rt>
+        <destSt>30249</destSt>
+        <destNm>Loop</destNm>
+        <trDr>5</trDr>
+        <prdt>20141020 11:49:01</prdt>
+        <arrT>20141020 16:08:01</arrT>
+        <isApp>0</isApp>
+        <isSch>0</isSch>
+        <isDly>0</isDly>
+        <isFlt>0</isFlt>
+        <flags/>
+        <lat>41.93251</lat>
+        <lon>-87.65312</lon>
+        <heading>176</heading>
+    </eta>
+</ctatt>

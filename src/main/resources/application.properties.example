@@ -1,0 +1,10 @@
+cta.apiKey=your_cta_api_key
+
+twilio.allocationsAccountID=your_twilio_account_id
+twilio.authToken=your_twilio_auth_token
+
+allocations.apiKey=your_allocations_api_key
+allocations.accountID=your_allocations_account_id
+allocations.emails=bob@example.com, sue@example.com
+
+pivots.filename=your_pivots_filename
