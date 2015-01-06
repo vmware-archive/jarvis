@@ -1,4 +1,4 @@
-package com.pivotallabs.jarvis.domain;
+package com.pivotallabs.jarvis.cta;
 
 import javax.xml.bind.annotation.XmlElement;
 import java.text.ParseException;
@@ -29,8 +29,6 @@ public class CTAEtaEntity {
 
     @XmlElement(name = "staNm")
     private String station;
-
-    private String line;
 
     @XmlElement(name = "arrT")
     private String upcomingTime;

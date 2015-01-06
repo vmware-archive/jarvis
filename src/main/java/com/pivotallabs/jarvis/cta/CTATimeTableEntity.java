@@ -1,4 +1,4 @@
-package com.pivotallabs.jarvis.domain;
+package com.pivotallabs.jarvis.cta;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

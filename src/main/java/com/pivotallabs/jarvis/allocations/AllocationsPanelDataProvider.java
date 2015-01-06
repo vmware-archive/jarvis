@@ -1,4 +1,4 @@
-package com.pivotallabs.jarvis.server;
+package com.pivotallabs.jarvis.allocations;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -6,18 +6,20 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.json.JacksonJsonParser;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.MessageFormat;
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class AllocationsPanelDataProvider implements PanelDataProvider {
+@Service
+public class AllocationsPanelDataProvider {
     private HttpClient httpClient;
     private String allocationsApiKey;
     private int allocationsAccountID;
@@ -26,6 +28,7 @@ public class AllocationsPanelDataProvider implements PanelDataProvider {
 
     private Object cachedJSONResult = null;
 
+    @Autowired
     public AllocationsPanelDataProvider(
         HttpClient httpClient,
         @Value("${allocations.apiKey}") String allocationsApiKey,
@@ -39,7 +42,6 @@ public class AllocationsPanelDataProvider implements PanelDataProvider {
         this.splitPattern = Pattern.compile("\\s*,\\s*");
     }
 
-    @Override
     public Object loadPanelData() {
         synchronized (this) {
             if (cachedJSONResult != null) {

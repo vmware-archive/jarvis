@@ -1,7 +1,5 @@
-package com.pivotallabs.jarvis.server;
+package com.pivotallabs.jarvis.cta;
 
-import com.pivotallabs.jarvis.domain.CTAEtaEntity;
-import com.pivotallabs.jarvis.domain.CTATimeTableEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,7 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Service
-public class CTAPanelDataProvider implements PanelDataProvider {
+public class CTAPanelDataProvider {
 
     private static final String CTA_API_URL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx";
     private static final String CLARK_AND_LAKE_BLUE_LINE = "30374,30375"; // Clark/Lake Blue
@@ -37,8 +35,7 @@ public class CTAPanelDataProvider implements PanelDataProvider {
         this.apiKey = apiKey;
     }
 
-    @Override
-    public Object loadPanelData() {
+    public CTATimeTableEntity loadPanelData() {
         String stopIDUrl = MessageFormat.format("{0}?key={1}&stpid={2}&max=100", CTA_API_URL, apiKey, CLARK_AND_LAKE_BLUE_LINE);
         ResponseEntity<CTATimeTableEntity> entity1 = restTemplate.getForEntity(stopIDUrl, CTATimeTableEntity.class);
 

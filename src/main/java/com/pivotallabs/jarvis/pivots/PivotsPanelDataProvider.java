@@ -1,20 +1,24 @@
-package com.pivotallabs.jarvis.server;
+package com.pivotallabs.jarvis.pivots;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.json.JacksonJsonParser;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class PivotsPanelDataProvider implements PanelDataProvider {
+@Service
+public class PivotsPanelDataProvider {
     private String pivotsFilename;
 
-    public PivotsPanelDataProvider(String pivotsFilename) {
+    @Autowired
+    public PivotsPanelDataProvider(@Value("${pivots.filename}") String pivotsFilename) {
         this.pivotsFilename = pivotsFilename;
     }
 
-    @Override
     public Object loadPanelData() {
         try(InputStream pivotsInputStream = getClass().getResourceAsStream(pivotsFilename)) {
             BufferedReader bufferedContentReader = new BufferedReader(new InputStreamReader(pivotsInputStream));

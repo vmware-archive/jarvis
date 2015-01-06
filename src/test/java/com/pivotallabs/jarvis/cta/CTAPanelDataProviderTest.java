@@ -1,7 +1,5 @@
-package com.pivotallabs.jarvis.server;
+package com.pivotallabs.jarvis.cta;
 
-import com.pivotallabs.jarvis.domain.CTAEtaEntity;
-import com.pivotallabs.jarvis.domain.CTATimeTableEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
@@ -41,13 +39,13 @@ public class CTAPanelDataProviderTest {
         mockServer
             .expect(requestTo("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=123456&stpid=30374,30375&max=100"))
             .andExpect(method(HttpMethod.GET))
-            .andRespond(withSuccess(readFile("ctaExample.xml"), MediaType.APPLICATION_XML));
+            .andRespond(withSuccess(readFile("cta.xml"), MediaType.APPLICATION_XML));
         mockServer
             .expect(requestTo("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=123456&mapid=40330,40460&max=100"))
             .andExpect(method(HttpMethod.GET))
-            .andRespond(withSuccess(readFile("ctaExample.xml"), MediaType.APPLICATION_XML));
+            .andRespond(withSuccess(readFile("cta.xml"), MediaType.APPLICATION_XML));
 
-        CTATimeTableEntity entity = (CTATimeTableEntity) ctaPanelDataProvider.loadPanelData();
+        CTATimeTableEntity entity = ctaPanelDataProvider.loadPanelData();
 
         mockServer.verify();
 

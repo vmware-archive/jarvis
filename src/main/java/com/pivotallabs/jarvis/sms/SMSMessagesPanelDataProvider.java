@@ -1,25 +1,28 @@
-package com.pivotallabs.jarvis.server;
+package com.pivotallabs.jarvis.sms;
 
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.resource.instance.Message;
 import com.twilio.sdk.resource.list.MessageList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class SMSMessagesPanelDataProvider implements PanelDataProvider {
+@Service
+public class SMSMessagesPanelDataProvider {
 
     private TwilioRestClient twilioRestClient;
     private DateFormat todayFormat;
 
+    @Autowired
     public SMSMessagesPanelDataProvider(TwilioRestClient twilioRestClient) {
         this.twilioRestClient = twilioRestClient;
         this.todayFormat = new SimpleDateFormat("YYYY-MM-dd");
         this.todayFormat.setTimeZone(TimeZone.getTimeZone("CDT"));
     }
 
-    @Override
     public Object loadPanelData() {
         Map<String, Object> jsonRootObject = new HashMap<>();
         List<Map<String, Object>> jsonMessages = new LinkedList<>();
