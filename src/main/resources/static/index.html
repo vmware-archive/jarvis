@@ -42,8 +42,8 @@
             <li ng-repeat="project in projects">
                 <name>{{project.name}}</name>
                 <div class="pivots">
-                    <ul ng-repeat="week in project.pivotsByWeek">
-                        <li ng-repeat="pivot in week"><jv-pivot email="{{pivot.email}}"/></li>
+                    <ul ng-repeat="pivot in project.pivotsByWeek">
+                        <li><jv-pivot email="{{pivot.email}}"/></li>
                     </ul>
                 </div>
             </li>

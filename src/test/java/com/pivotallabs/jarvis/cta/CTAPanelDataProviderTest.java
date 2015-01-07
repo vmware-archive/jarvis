@@ -2,16 +2,13 @@ package com.pivotallabs.jarvis.cta;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
+import util.FileUtils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -39,11 +36,11 @@ public class CTAPanelDataProviderTest {
         mockServer
             .expect(requestTo("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=123456&stpid=30374,30375&max=100"))
             .andExpect(method(HttpMethod.GET))
-            .andRespond(withSuccess(readFile("cta.xml"), MediaType.APPLICATION_XML));
+            .andRespond(withSuccess(FileUtils.readFile("cta.xml"), MediaType.APPLICATION_XML));
         mockServer
             .expect(requestTo("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=123456&mapid=40330,40460&max=100"))
             .andExpect(method(HttpMethod.GET))
-            .andRespond(withSuccess(readFile("cta.xml"), MediaType.APPLICATION_XML));
+            .andRespond(withSuccess(FileUtils.readFile("cta.xml"), MediaType.APPLICATION_XML));
 
         CTATimeTableEntity entity = ctaPanelDataProvider.loadPanelData();
 
@@ -63,19 +60,5 @@ public class CTAPanelDataProviderTest {
         assertThat(secondCtaEtaEntity.getLine(), is("Brown"));
         assertThat(secondCtaEtaEntity.getDestination(), is("Kimball"));
         assertThat(secondCtaEtaEntity.getUpcomingTime(), is("2014-10-20T12:04:41"));
-    }
-
-    private String readFile(String path) throws IOException {
-        ClassPathResource cpr = new ClassPathResource(path);
-        InputStream inputStream = cpr.getInputStream();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-        StringBuilder stringBuilder = new StringBuilder();
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            stringBuilder.append(line);
-        }
-
-        return stringBuilder.toString();
     }
 }
