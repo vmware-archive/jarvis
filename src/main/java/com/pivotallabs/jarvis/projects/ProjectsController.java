@@ -15,7 +15,7 @@ public class ProjectsController {
         this.projectService = projectService;
     }
 
-    @RequestMapping(value = "/api/panels/allocations")
+    @RequestMapping(value = "/api/panels/projects")
     public ProjectEntityWrapper listProjects() {
         List<ProjectEntity> projects = projectService.findAllProjects();
         return new ProjectEntityWrapper(projects);

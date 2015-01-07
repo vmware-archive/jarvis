@@ -36,7 +36,7 @@ public class ProjectsControllerTest {
         MockMvc mockMvc = standaloneSetup(controller).build();
         when(provider.findAllProjects()).thenReturn(Arrays.asList(new ProjectEntity()));
 
-        mockMvc.perform(get("/api/panels/allocations"))
+        mockMvc.perform(get("/api/panels/projects"))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"));
     }

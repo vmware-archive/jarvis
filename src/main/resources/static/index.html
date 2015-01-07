@@ -9,7 +9,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
     <script src="js/cta.js"></script>
-    <script src="js/allocations.js"></script>
+    <script src="js/projects.js"></script>
     <script src="js/messages.js"></script>
     <script src="js/pivots.js"></script>
     <script src="js/weather.js"></script>
@@ -37,7 +37,7 @@
         <i class="fa fa-bus"></i>
     </div>
 
-    <div class="panel panel-allocations" ng-controller="AllocationsPanelController">
+    <div class="panel panel-allocations" ng-controller="ProjectsPanelController">
         <ul class="projects">
             <li ng-repeat="project in projects">
                 <name>{{project.name}}</name>
