@@ -20,13 +20,13 @@
 </head>
 <body>
 <div class="panel-container">
+
     <div class="panel panel-cta" ng-controller="CTAPanelController">
         <ul class="predictions">
             <li ng-repeat="prediction in predictions">
-                <h1><span>{{prediction.station | limitTo:1}}</span><br/>{{prediction.station}}</h1>
                 <ul class="directions">
-                    <li ng-repeat="(destination, times) in prediction.destinations">
-                        <h2 class="line-{{prediction.line}}">to {{destination}}</h2>
+                    <li class="line-{{prediction.line}}" ng-repeat="(destination, times) in prediction.destinations">
+                        <h2>{{prediction.station}} to {{destination}}</h2>
                         <ol class="times">
                             <li ng-repeat="time in times" ng-bind-html="trust(time.locale('en-terse').fromNow())"/>
                         </ol>
@@ -34,7 +34,6 @@
                 </ul>
             </li>
         </ul>
-        <i class="fa fa-bus"></i>
     </div>
 
     <div class="panel panel-allocations" ng-controller="ProjectsPanelController">
@@ -48,13 +47,12 @@
                 </div>
             </li>
         </ul>
-        <i class="fa fa-users"></i>
     </div>
 
     <div class="panel panel-weather" ng-controller="WeatherPanelController">
         <div class="wrapper" ng-if="forecast">
             <jv-weather-icon class="current-icon" ng-attr-icon="{{forecast.currently.icon}}"></jv-weather-icon>
-            <h1>{{forecast.currently.apparentTemperature | number:0}}<i class="wi wi-fahrenheit"></i></h1>
+            <h1>{{forecast.currently.temperature | number:0}}<i class="wi wi-fahrenheit"></i></h1>
             <p>{{forecast.minutely.summary}}</p>
             <p>{{forecast.hourly.summary}}</p>
             <table>
@@ -62,7 +60,7 @@
                 <tr ng-repeat="hour in forecast.hourly.data | limitTo:3">
                     <th>{{hour.time | moment:'h' }}&thinsp;<sup>{{hour.time | moment:'a' }}</sup></th>
                     <td><jv-weather-icon ng-attr-icon="{{hour.icon}}"></jv-weather-icon></td>
-                    <td>{{hour.apparentTemperature | number:0}}<i class="wi wi-fahrenheit"></i></td>
+                    <td>{{hour.temperature | number:0}}<i class="wi wi-fahrenheit"></i></td>
                     <td><i class="wi wi-sprinkles"></i>&thinsp;{{hour.precipProbability * 100}}<sup>%</sup></td>
                 </tr>
                 </tbody>

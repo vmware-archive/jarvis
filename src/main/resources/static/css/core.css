@@ -1,18 +1,16 @@
 * { padding: 0; margin: 0; }
 body { background: #fff; color: #F7F7F7; font-family: "Helvetica Neue"; }
 
-.panel-container { padding: 20px; width: 1040px; height: 1920px; overflow: hidden; background: #222224;  }
-.panel {margin-bottom: 20px; overflow: hidden; float: left; width: 100%; position: relative; }
+.panel-container { padding: 2%;; width: 96%; overflow: hidden; background: #222224;  }
+.panel {margin-bottom: 20px; display:flex; overflow: hidden; width: 100%; }
 
-.panel-cta > i { position: absolute; right: -3px; top: -19px; font-size: 100px; transform: rotate(180deg); color: #222224; }
+.panel-cta > i {font-size: 100px; transform: rotate(180deg); color: #222224; }
 
 .panel-cta .predictions li {list-style-type:none;}
-.panel-cta .predictions > li { width:150px; display:block; float:left; margin-right:20px;}
-.panel-cta .predictions > li h1 { text-align:center; width:150px; font-weight:normal; background:#838383;}
-.panel-cta .predictions > li h1 span { font-size:100px; font-weight:bold; width:150px; display:block; margin-bottom:-55px;}
-.panel-cta .predictions h2 { text-align: center; border-top:5px solid white; font-weight:normal; padding:5px;}
-.panel-cta .times {background:white; display:flex; width:100%;}
-.panel-cta .times li {color:black; text-align:center; margin:5px auto; width:20px; height:20px; font-weight:bold;}
+.panel-cta .predictions > li { width:550px; display:block; float:left; margin:0 20px 20px 0;}
+.panel-cta .predictions h2 { text-align: center; background:#222224; font-weight:normal; padding:5px;}
+.panel-cta .times {background: #4f4f4f; display:flex; width:70%; margin:0 15%;}
+.panel-cta .times li {color:white; text-align:center; margin:5px auto; width:auto; font-weight:bold; font-size:50px;}
 
 .panel-cta .line-Brown      { background: #62361b; }
 .panel-cta .line-Blue       { background: #00a1de; }
@@ -35,12 +33,10 @@ body { background: #fff; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-allocations .pivots li { display: inline-block; }
 .panel-allocations > i { position: absolute; bottom: -15px; left: -10px; font-size: 100px; color: #222224; }
 
-.panel-weather { background: #9b59b6; }
-.panel-weather .wrapper { padding: 200px 20px 20px 20px; position: relative; }
-.panel-weather .wrapper > * {  z-index: 1; position: relative; }
-.panel-weather h1 { font-size: 90px; position: absolute !important; right: 10px; top: 30px; }
+.panel-weather { display:none; }
+.panel-weather h1 { font-size: 90px; right: 10px; top: 30px; }
 .panel-weather p { font-size: 22px; padding-bottom: 5px; }
-.panel-weather .current-icon { font-size: 200px; position: absolute; top: -30px; left: -15px; color: #EADDEF; }
+.panel-weather .current-icon { display:none; font-size: 200px; position: absolute; top: -30px; left: -15px; color: #EADDEF; }
 .panel-weather table { font-size: 40px; border-spacing: 30px 0; margin: 20px auto 0 auto; white-space: nowrap; }
 .panel-weather table th { font-weight: normal; text-align: right; }
 .panel-weather sup { font-size: small; }
@@ -66,7 +62,3 @@ jv-pivot { display: inline-block; background: #000; border-radius: 40px; font-si
     from { -webkit-transform: translateX(0%); }
     to { -webkit-transform: translateX(-20%); }
 }
-
-/*shim, remove me*/
-.panel-allocations { width: 612px; height: 465px; }
-.panel-weather { width: 408px; margin-left: 20px; }
