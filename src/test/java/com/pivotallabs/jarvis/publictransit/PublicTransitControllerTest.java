@@ -1,15 +1,20 @@
 package com.pivotallabs.jarvis.publictransit;
 
-import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableEntity;
 import com.pivotallabs.jarvis.publictransit.cta.CtaPublicTransitService;
+import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableEntity;
+import com.pivotallabs.jarvis.publictransit.divvy.DivvyService;
+import com.pivotallabs.jarvis.publictransit.divvy.DivvyStationEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -20,7 +25,10 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class PublicTransitControllerTest {
 
     @Mock
-    CtaPublicTransitService dataProvider;
+    CtaPublicTransitService ctaService;
+    
+    @Mock
+    DivvyService divvyService;
 
     @InjectMocks
     PublicTransitController controller;
@@ -31,9 +39,9 @@ public class PublicTransitControllerTest {
     }
 
     @Test
-    public void showCtaTimeTableEndpointMapping() throws Exception {
+    public void showCtaTimeTable_EndpointMapping() throws Exception {
         MockMvc mockMvc = standaloneSetup(controller).build();
-        when(dataProvider.loadPanelData()).thenReturn(new CtaTimeTableEntity());
+        when(ctaService.loadPanelData()).thenReturn(new CtaTimeTableEntity());
 
         mockMvc.perform(get("/api/public-transit/cta-timetable"))
             .andExpect(status().isOk())
@@ -41,12 +49,33 @@ public class PublicTransitControllerTest {
     }
 
     @Test
-    public void showCtaTimeTable_ReturnsCTATimeTableEntity() {
+    public void showCtaTimeTable_ReturnsTheCtaTimeTable() {
         CtaTimeTableEntity expectedEntity = new CtaTimeTableEntity();
-        when(dataProvider.loadPanelData()).thenReturn(expectedEntity);
+        when(ctaService.loadPanelData()).thenReturn(expectedEntity);
 
         CtaTimeTableEntity actualEntity = controller.showCtaTimeTable();
 
         assertThat(actualEntity, is(expectedEntity));
+    }
+
+    @Test
+    public void listDivvyStations_EndpointMapping() throws Exception {
+        MockMvc mockMvc = standaloneSetup(controller).build();
+        when(divvyService.findAllStations()).thenReturn(Arrays.asList(new DivvyStationEntity()));
+
+        mockMvc.perform(get("/api/public-transit/divvy-stations"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType("application/json"));
+    }
+    
+    @Test
+    public void listDivvyStations_ReturnsStations() {
+        List<DivvyStationEntity> expectedStations = Arrays.asList(new DivvyStationEntity(), new DivvyStationEntity());
+        when(divvyService.findAllStations()).thenReturn(expectedStations);
+
+        PublicTransitController.DivvyStationEntityWrapper response = controller.listDivvyStations();
+        
+        assertThat(response.getDivvyStations(), hasSize(2));
+        assertThat(response.getDivvyStations(), sameInstance(expectedStations));
     }
 }

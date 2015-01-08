@@ -1,5 +1,7 @@
 cta.apiKey=your_cta_api_key
 
+divvy.stationIds=5, 13
+
 twilio.allocationsAccountId=your_twilio_account_id
 twilio.authToken=your_twilio_auth_token
 

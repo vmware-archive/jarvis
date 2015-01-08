@@ -1,23 +1,19 @@
 package com.pivotallabs.jarvis.projects.pivotalallocations;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 import util.FileUtils;
+import util.TestUtils;
 
 import java.io.IOException;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.*;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 public class PivotalAllocationsClientTest {
@@ -27,8 +23,7 @@ public class PivotalAllocationsClientTest {
 
     @Before
     public void setUp() {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(0, mappingJacksonHttpMessageConverter());
+        RestTemplate restTemplate = TestUtils.testRestTemplate();
         mockServer = MockRestServiceServer.createServer(restTemplate);
         client = new PivotalAllocationsClient(restTemplate, "cookie-value");
     }
@@ -69,15 +64,5 @@ public class PivotalAllocationsClientTest {
         assertThat(apiResponse.getPeople().get(2).getId(), is(3));
         assertThat(apiResponse.getPeople().get(2).getName(), is("Mary Sue"));
 
-    }
-
-    private MappingJackson2HttpMessageConverter mappingJacksonHttpMessageConverter() {
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-        converter.setObjectMapper(objectMapper);
-
-        return converter;
     }
 }
