@@ -1,5 +1,5 @@
 * { padding: 0; margin: 0; }
-body { background: #fff; color: #F7F7F7; font-family: "Helvetica Neue"; }
+body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 
 .panel-container { padding: 2%;; width: 96%; overflow: hidden; background: #222224;  }
 .panel {margin-bottom: 20px; display:flex; overflow: hidden; width: 100%; }
