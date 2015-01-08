@@ -28,7 +28,7 @@ angular.
         };
 
         var loadData = function () {
-            $http.get('/api/public-transit').success(function (data) {
+            $http.get('/api/public-transit/cta-timetable').success(function (data) {
                 var stationLineGroupings = {};
                 angular.forEach(data.predictions, function (prediction) {
                     var key = prediction.station + prediction.line;

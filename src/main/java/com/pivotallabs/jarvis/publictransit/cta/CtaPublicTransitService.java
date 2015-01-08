@@ -1,6 +1,5 @@
 package com.pivotallabs.jarvis.publictransit.cta;
 
-import com.pivotallabs.jarvis.publictransit.PublicTransitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,7 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Service
-public class CtaPublicTransitService implements PublicTransitService {
+public class CtaPublicTransitService {
 
     private static final String CTA_API_URL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx";
     private static final String CLARK_AND_LAKE_BLUE_LINE = "30374,30375"; // Clark/Lake Blue

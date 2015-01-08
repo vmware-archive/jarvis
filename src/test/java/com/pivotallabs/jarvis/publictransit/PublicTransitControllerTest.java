@@ -35,7 +35,7 @@ public class PublicTransitControllerTest {
         MockMvc mockMvc = standaloneSetup(controller).build();
         when(dataProvider.loadPanelData()).thenReturn(new CtaTimeTableEntity());
 
-        mockMvc.perform(get("/api/public-transit"))
+        mockMvc.perform(get("/api/public-transit/cta-timetable"))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json"));
     }
