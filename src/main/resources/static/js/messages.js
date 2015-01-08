@@ -2,7 +2,7 @@ angular.
     module('JarvisMessages', []).
     controller('MessagesPanelController', function ($scope, $http, $interval) {
         var loadData = function () {
-            $http.get('/api/panels/sms-messages').success(function (data) {
+            $http.get('/api/sms-messages').success(function (data) {
                 $scope.messages = data.messages;
             });
         };

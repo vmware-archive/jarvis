@@ -1,5 +1,6 @@
 package com.pivotallabs.jarvis.sms;
 
+import com.pivotallabs.jarvis.sms.twilio.TwilioSmsMessageService;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.resource.instance.Account;
 import com.twilio.sdk.resource.instance.Message;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class SMSPanelControllerTest {
+public class SmsMessagesControllerTest {
     private MockMvc mockMvc;
 
     @Mock
@@ -37,14 +38,14 @@ public class SMSPanelControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
 
-        SMSMessagesPanelDataProvider provider = new SMSMessagesPanelDataProvider(mockTwilioRestClient);
-        SMSPanelController controller = new SMSPanelController(provider);
+        SmsMessageService provider = new TwilioSmsMessageService(mockTwilioRestClient);
+        SmsMessagesController controller = new SmsMessagesController(provider);
 
         mockMvc = standaloneSetup(controller).build();
     }
 
     @Test
-    public void getsSMSData() throws Exception {
+    public void listMessages_getsSmsData() throws Exception {
         List<Message> messages = new LinkedList<>();
 
         Map<String, Object> message1Properties = new HashMap<>();
@@ -67,7 +68,7 @@ public class SMSPanelControllerTest {
         Mockito.when(mockTwilioAccount.getMessages(Mockito.any())).thenReturn(mockTwilioMessageList);
         Mockito.when(mockTwilioMessageList.iterator()).thenReturn(messages.iterator());
 
-        mockMvc.perform(get("/api/panels/sms-messages"))
+        mockMvc.perform(get("/api/sms-messages"))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
             .andExpect(jsonPath("$.messages", hasSize(1)))

@@ -1,5 +1,6 @@
-package com.pivotallabs.jarvis.sms;
+package com.pivotallabs.jarvis.sms.twilio;
 
+import com.pivotallabs.jarvis.sms.SmsMessageService;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.resource.instance.Message;
 import com.twilio.sdk.resource.list.MessageList;
@@ -11,19 +12,19 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class SMSMessagesPanelDataProvider {
+public class TwilioSmsMessageService implements SmsMessageService {
 
     private TwilioRestClient twilioRestClient;
     private DateFormat todayFormat;
 
     @Autowired
-    public SMSMessagesPanelDataProvider(TwilioRestClient twilioRestClient) {
+    public TwilioSmsMessageService(TwilioRestClient twilioRestClient) {
         this.twilioRestClient = twilioRestClient;
         this.todayFormat = new SimpleDateFormat("YYYY-MM-dd");
         this.todayFormat.setTimeZone(TimeZone.getTimeZone("CDT"));
     }
 
-    public Object loadPanelData() {
+    public Object findAllSmsMessages() {
         Map<String, Object> jsonRootObject = new HashMap<>();
         List<Map<String, Object>> jsonMessages = new LinkedList<>();
         jsonRootObject.put("messages", jsonMessages);
