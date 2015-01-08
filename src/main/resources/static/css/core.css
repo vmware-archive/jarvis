@@ -27,10 +27,11 @@ body { background: #fff; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-allocations table th.private { -webkit-filter: blur(8px) invert(100%); -webkit-transition: 0.2s; text-transform: uppercase; }
 .panel-allocations table th.private:hover { -webkit-filter: none; text-transform: none;  }
 .panel-allocations ul { list-style: none; }
+.panel-allocations .projects { width: 100%; }
 .panel-allocations .projects > li { position: relative; border-bottom: 1px solid rgba(255,255,255,0.2); padding-left: 15px; white-space: nowrap; }
 .panel-allocations .projects name { font-size: 32px; line-height: 70px; }
 .panel-allocations .pivots { position: absolute; right: 0; top: 0; bottom: 0; padding: 5px 5px 5px 15px; background: -webkit-linear-gradient(left, rgba(46,204,113,0) 0%,rgba(46,204,113,1) 15px,rgba(46,204,113,1) 99%);  }
-.panel-allocations .pivots li { display: inline-block; }
+.panel-allocations .pivots li { display: inline; padding-left: 15px; padding-right: 15px }
 .panel-allocations > i { position: absolute; bottom: -15px; left: -10px; font-size: 100px; color: #222224; }
 
 .panel-weather { display:none; }

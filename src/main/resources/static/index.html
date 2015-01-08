@@ -41,8 +41,10 @@
             <li ng-repeat="project in projects">
                 <name>{{project.name}}</name>
                 <div class="pivots">
-                    <ul ng-repeat="allocation in project.allocations">
-                        <li><jv-pivot name="{{allocation.employee.name}}"/></li>
+                    <ul>
+                        <li ng-repeat="allocation in project.allocations">
+                            <jv-pivot name="{{allocation.employee.name}}"/>
+                        </li>
                     </ul>
                 </div>
             </li>
