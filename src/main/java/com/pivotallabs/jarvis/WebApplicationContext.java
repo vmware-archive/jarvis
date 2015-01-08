@@ -21,8 +21,8 @@ public class WebApplicationContext {
     }
 
     @Bean
-    public TwilioRestClient getTwilioRestClient(@Value("${twilio.accountID}") String accountID, @Value("${twilio.authToken}") String authToken) {
-        return new TwilioRestClient(accountID, authToken);
+    public TwilioRestClient getTwilioRestClient(@Value("${twilio.accountId}") String accountId, @Value("${twilio.authToken}") String authToken) {
+        return new TwilioRestClient(accountId, authToken);
     }
 
     @Bean

@@ -63,9 +63,9 @@ public class PivotalAllocationsProjectService implements ProjectService {
         return projects;
     }
 
-    private ProjectEntity findProjectById(List<ProjectEntity> projectEntities, int projectID) {
+    private ProjectEntity findProjectById(List<ProjectEntity> projectEntities, int projectId) {
         for (ProjectEntity chicagoProject : projectEntities) {
-            if (chicagoProject.getId() == projectID) {
+            if (chicagoProject.getId() == projectId) {
                 return chicagoProject;
             }
         }
@@ -73,9 +73,9 @@ public class PivotalAllocationsProjectService implements ProjectService {
         return null;
     }
 
-    private EmployeeEntity findEmployeeById(List<EmployeeEntity> employeeEntities, int employeeID) {
+    private EmployeeEntity findEmployeeById(List<EmployeeEntity> employeeEntities, int employeeId) {
         for (EmployeeEntity chicagoEmployeeEntity : employeeEntities) {
-            if (chicagoEmployeeEntity.getId() == employeeID) {
+            if (chicagoEmployeeEntity.getId() == employeeId) {
                 return chicagoEmployeeEntity;
             }
         }

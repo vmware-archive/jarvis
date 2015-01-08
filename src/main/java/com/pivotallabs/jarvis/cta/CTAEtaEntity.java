@@ -8,21 +8,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CTAEtaEntity {
-    private static final Map<String, String> lineIDToName;
+    private static final Map<String, String> lineIdToName;
     private static final SimpleDateFormat iso8601DateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     private static final SimpleDateFormat ctaDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
 
     static {
-        lineIDToName = new HashMap<>();
-        lineIDToName.put("P", "Purple");
-        lineIDToName.put("Y", "Yellow");
-        lineIDToName.put("G", "Green");
-        lineIDToName.put("Brn", "Brown");
-        lineIDToName.put("Org", "Orange");
+        lineIdToName = new HashMap<>();
+        lineIdToName.put("P", "Purple");
+        lineIdToName.put("Y", "Yellow");
+        lineIdToName.put("G", "Green");
+        lineIdToName.put("Brn", "Brown");
+        lineIdToName.put("Org", "Orange");
     }
 
     @XmlElement(name = "rt")
-    private String lineID;
+    private String lineId;
 
     @XmlElement(name = "destNm")
     private String destination;
@@ -38,11 +38,11 @@ public class CTAEtaEntity {
     }
 
     public String getLine() {
-        return lineIDToName.getOrDefault(lineID, lineID);
+        return lineIdToName.getOrDefault(lineId, lineId);
     }
 
-    public String getLineID() {
-        return lineID;
+    public String getLineId() {
+        return lineId;
     }
 
     public String getStation() {

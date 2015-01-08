@@ -36,11 +36,11 @@ public class CTAPanelDataProvider {
     }
 
     public CTATimeTableEntity loadPanelData() {
-        String stopIDUrl = MessageFormat.format("{0}?key={1}&stpid={2}&max=100", CTA_API_URL, apiKey, CLARK_AND_LAKE_BLUE_LINE);
-        ResponseEntity<CTATimeTableEntity> entity1 = restTemplate.getForEntity(stopIDUrl, CTATimeTableEntity.class);
+        String stopIdUrl = MessageFormat.format("{0}?key={1}&stpid={2}&max=100", CTA_API_URL, apiKey, CLARK_AND_LAKE_BLUE_LINE);
+        ResponseEntity<CTATimeTableEntity> entity1 = restTemplate.getForEntity(stopIdUrl, CTATimeTableEntity.class);
 
-        String mapIDUrl = MessageFormat.format("{0}?key={1}&mapid={2}&max=100", CTA_API_URL, apiKey, MERCHANDISE_MART_GRAND_AND_STATE);
-        ResponseEntity<CTATimeTableEntity> entity2 = restTemplate.getForEntity(mapIDUrl, CTATimeTableEntity.class);
+        String mapIdUrl = MessageFormat.format("{0}?key={1}&mapid={2}&max=100", CTA_API_URL, apiKey, MERCHANDISE_MART_GRAND_AND_STATE);
+        ResponseEntity<CTATimeTableEntity> entity2 = restTemplate.getForEntity(mapIdUrl, CTATimeTableEntity.class);
 
         List<CTAEtaEntity> filteredTimeTableEtas = new ArrayList<>();
         filterTimeTableEtas(entity1.getBody(), filteredTimeTableEtas);
