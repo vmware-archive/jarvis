@@ -1,7 +1,7 @@
 angular.
     module('JarvisPivots', []).
     service('jvPivotsService', ['$http', '$timeout', function (http, timeout) {
-        var cachedPivots = { email: {}, phone: {} };
+        var cachedPivots = { email: {}, phone: {}, name: {} };
 
         var isLoading = false;
         var maybeLoad = function () {
@@ -23,6 +23,12 @@ angular.
                     } else {
                         cachedPivots.phone[pivot.phone] = pivot;
                     }
+
+                    if (cachedPivots.name[pivot.name]) {
+                        angular.extend(cachedPivots.name[pivot.name], pivot);
+                    } else {
+                        cachedPivots.name[pivot.name] = pivot;
+                    }
                 });
 
                 isLoading = false;
@@ -43,6 +49,13 @@ angular.
                     cachedPivots.phone[phone] = {name: '?'};
                 }
                 return cachedPivots.phone[phone];
+            },
+            findByName: function (name) {
+                if (!cachedPivots.name[name]) {
+                    maybeLoad();
+                    cachedPivots.name[name] = {name: '?'};
+                }
+                return cachedPivots.name[name];
             }
         }
     }]).
@@ -55,6 +68,8 @@ angular.
                     scope.pivot = pivotsService.findByEmail(attributes.email);
                 } else if (attributes.phone) {
                     scope.pivot = pivotsService.findByPhone(attributes.phone);
+                } else if (attributes.name) {
+                    scope.pivot = pivotsService.findByName(attributes.name);
                 }
             }
         }
