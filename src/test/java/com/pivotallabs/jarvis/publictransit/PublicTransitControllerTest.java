@@ -31,7 +31,7 @@ public class PublicTransitControllerTest {
     }
 
     @Test
-    public void showEndpointMapping() throws Exception {
+    public void showCtaTimeTableEndpointMapping() throws Exception {
         MockMvc mockMvc = standaloneSetup(controller).build();
         when(dataProvider.loadPanelData()).thenReturn(new CtaTimeTableEntity());
 
@@ -41,11 +41,11 @@ public class PublicTransitControllerTest {
     }
 
     @Test
-    public void showReturnsCTATimeTableEntity() {
+    public void showCtaTimeTable_ReturnsCTATimeTableEntity() {
         CtaTimeTableEntity expectedEntity = new CtaTimeTableEntity();
         when(dataProvider.loadPanelData()).thenReturn(expectedEntity);
 
-        CtaTimeTableEntity actualEntity = controller.show();
+        CtaTimeTableEntity actualEntity = controller.showCtaTimeTable();
 
         assertThat(actualEntity, is(expectedEntity));
     }

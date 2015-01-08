@@ -17,7 +17,7 @@ public class PublicTransitController {
     }
 
     @RequestMapping(value = "/api/public-transit/cta-timetable", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CtaTimeTableEntity show() {
+    public CtaTimeTableEntity showCtaTimeTable() {
         return publicTransitService.loadPanelData();
     }
 }
