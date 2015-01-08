@@ -11,8 +11,10 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class PivotalAllocationsClient {
+    private static final String ALLOCATIONS_API_URL = "https://allocations.cfapps.io/accounts/3/matrix?week_offset=0&week_count=2&location_ids[]=35";
+
     private final RestTemplate restTemplate;
-    private String cookieValue;
+    private final String cookieValue;
 
     @Autowired
     public PivotalAllocationsClient(RestTemplate restTemplate, @Value("${pivotalallocations.cookie}") String cookieValue) {
@@ -26,7 +28,7 @@ public class PivotalAllocationsClient {
         HttpEntity requestEntity = new HttpEntity(null, requestHeaders);
 
         ResponseEntity<PivotalAllocationsApiResponse> responseEntity = restTemplate.exchange(
-            "https://allocations.cfapps.io/accounts/3/matrix?week_offset=0&week_count=2&location_ids[]=35",
+            ALLOCATIONS_API_URL,
             HttpMethod.GET,
             requestEntity,
             PivotalAllocationsApiResponse.class);

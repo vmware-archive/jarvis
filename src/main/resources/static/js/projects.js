@@ -2,7 +2,7 @@ angular.
     module('JarvisAllocations', []).
     controller('ProjectsPanelController', function ($scope, $http, $interval) {
         var loadData = function () {
-            $http.get('/api/panels/projects').success(function (data) {
+            $http.get('/api/projects').success(function (data) {
                 $scope.projects = data.projects;
             });
         };

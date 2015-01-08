@@ -29,7 +29,7 @@ public class PivotalAllocationsProjectService implements ProjectService {
             projects.add(projectEntity);
         }
 
-        // get filtered people
+        // get filtered employees
         List<EmployeeEntity> filteredEmployees = new ArrayList<>();
         for (PivotalAllocationsPersonEntity pivotalAllocationsPersonEntity : apiResponse.getPeople()) {
             if (apiResponse.getFilteredPeople().contains(pivotalAllocationsPersonEntity.getId())) {
@@ -51,25 +51,16 @@ public class PivotalAllocationsProjectService implements ProjectService {
         // create new allocations
         for (PivotalAllocationsAllocationEntity pivotalAllocationsAllocationEntity : filteredAllocations) {
             ProjectEntity project = findProjectById(projects, pivotalAllocationsAllocationEntity.getProjectId());
-            EmployeeEntity person = findEmployeeById(filteredEmployees, pivotalAllocationsAllocationEntity.getPersonId());
+            EmployeeEntity employee = findEmployeeById(filteredEmployees, pivotalAllocationsAllocationEntity.getPersonId());
             
             com.pivotallabs.jarvis.projects.AllocationEntity allocationEntity = new com.pivotallabs.jarvis.projects.AllocationEntity();
-            allocationEntity.setEmployee(person);
+            allocationEntity.setEmployee(employee);
             allocationEntity.setStartDate(pivotalAllocationsAllocationEntity.getWeekStart());
             
             project.addAllocation(allocationEntity);
         }
 
         return projects;
-    }
-
-    private EmployeeEntity findEmployeeById(List<EmployeeEntity> employeeEntities, int employeeID) {
-        for (EmployeeEntity chicagoEmployeeEntity : employeeEntities) {
-            if (chicagoEmployeeEntity.getId() == employeeID) {
-                return chicagoEmployeeEntity;
-            }
-        }
-        return null;
     }
 
     private ProjectEntity findProjectById(List<ProjectEntity> projectEntities, int projectID) {
@@ -79,6 +70,15 @@ public class PivotalAllocationsProjectService implements ProjectService {
             }
         }
 
+        return null;
+    }
+
+    private EmployeeEntity findEmployeeById(List<EmployeeEntity> employeeEntities, int employeeID) {
+        for (EmployeeEntity chicagoEmployeeEntity : employeeEntities) {
+            if (chicagoEmployeeEntity.getId() == employeeID) {
+                return chicagoEmployeeEntity;
+            }
+        }
         return null;
     }
 }
