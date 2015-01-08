@@ -1,5 +1,8 @@
-package com.pivotallabs.jarvis.cta;
+package com.pivotallabs.jarvis.publictransit;
 
+import com.pivotallabs.jarvis.publictransit.cta.CtaEtaEntity;
+import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableEntity;
+import com.pivotallabs.jarvis.publictransit.cta.CtaPublicTransitService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
@@ -17,9 +20,9 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-public class CTAPanelDataProviderTest {
+public class PublicTransitServiceTest {
     private RestTemplate restTemplate;
-    private CTAPanelDataProvider ctaPanelDataProvider;
+    private CtaPublicTransitService publicTransitService;
     private MockRestServiceServer mockServer;
 
     @Before
@@ -28,7 +31,7 @@ public class CTAPanelDataProviderTest {
 
         restTemplate = new RestTemplate();
         mockServer = MockRestServiceServer.createServer(restTemplate);
-        ctaPanelDataProvider = new CTAPanelDataProvider(restTemplate, "123456");
+        publicTransitService = new CtaPublicTransitService(restTemplate, "123456");
     }
 
     @Test
@@ -42,20 +45,20 @@ public class CTAPanelDataProviderTest {
             .andExpect(method(HttpMethod.GET))
             .andRespond(withSuccess(FileUtils.readFile("cta.xml"), MediaType.APPLICATION_XML));
 
-        CTATimeTableEntity entity = ctaPanelDataProvider.loadPanelData();
+        CtaTimeTableEntity entity = publicTransitService.loadPanelData();
 
         mockServer.verify();
 
         assertThat(entity, not(nullValue()));
         assertThat(entity.getPredictions(), hasSize(4));
 
-        CTAEtaEntity firstCtaEtaEntity = entity.getPredictions().get(0);
+        CtaEtaEntity firstCtaEtaEntity = entity.getPredictions().get(0);
         assertThat(firstCtaEtaEntity.getStation(), is("Merchandise Mart"));
         assertThat(firstCtaEtaEntity.getLine(), is("Brown"));
         assertThat(firstCtaEtaEntity.getDestination(), is("Kimball"));
         assertThat(firstCtaEtaEntity.getUpcomingTime(), is("2014-10-20T11:59:35"));
 
-        CTAEtaEntity secondCtaEtaEntity = entity.getPredictions().get(1);
+        CtaEtaEntity secondCtaEtaEntity = entity.getPredictions().get(1);
         assertThat(secondCtaEtaEntity.getStation(), is("Merchandise Mart"));
         assertThat(secondCtaEtaEntity.getLine(), is("Brown"));
         assertThat(secondCtaEtaEntity.getDestination(), is("Kimball"));

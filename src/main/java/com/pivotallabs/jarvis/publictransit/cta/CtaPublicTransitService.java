@@ -1,5 +1,6 @@
-package com.pivotallabs.jarvis.cta;
+package com.pivotallabs.jarvis.publictransit.cta;
 
+import com.pivotallabs.jarvis.publictransit.PublicTransitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Service
-public class CTAPanelDataProvider {
+public class CtaPublicTransitService implements PublicTransitService {
 
     private static final String CTA_API_URL = "http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx";
     private static final String CLARK_AND_LAKE_BLUE_LINE = "30374,30375"; // Clark/Lake Blue
@@ -30,27 +31,27 @@ public class CTAPanelDataProvider {
     }
 
     @Autowired
-    public CTAPanelDataProvider(RestTemplate restTemplate, @Value("${cta.apiKey}") String apiKey) {
+    public CtaPublicTransitService(RestTemplate restTemplate, @Value("${cta.apiKey}") String apiKey) {
         this.restTemplate = restTemplate;
         this.apiKey = apiKey;
     }
 
-    public CTATimeTableEntity loadPanelData() {
+    public CtaTimeTableEntity loadPanelData() {
         String stopIdUrl = MessageFormat.format("{0}?key={1}&stpid={2}&max=100", CTA_API_URL, apiKey, CLARK_AND_LAKE_BLUE_LINE);
-        ResponseEntity<CTATimeTableEntity> entity1 = restTemplate.getForEntity(stopIdUrl, CTATimeTableEntity.class);
+        ResponseEntity<CtaTimeTableEntity> entity1 = restTemplate.getForEntity(stopIdUrl, CtaTimeTableEntity.class);
 
         String mapIdUrl = MessageFormat.format("{0}?key={1}&mapid={2}&max=100", CTA_API_URL, apiKey, MERCHANDISE_MART_GRAND_AND_STATE);
-        ResponseEntity<CTATimeTableEntity> entity2 = restTemplate.getForEntity(mapIdUrl, CTATimeTableEntity.class);
+        ResponseEntity<CtaTimeTableEntity> entity2 = restTemplate.getForEntity(mapIdUrl, CtaTimeTableEntity.class);
 
-        List<CTAEtaEntity> filteredTimeTableEtas = new ArrayList<>();
+        List<CtaEtaEntity> filteredTimeTableEtas = new ArrayList<>();
         filterTimeTableEtas(entity1.getBody(), filteredTimeTableEtas);
         filterTimeTableEtas(entity2.getBody(), filteredTimeTableEtas);
 
-        return new CTATimeTableEntity(filteredTimeTableEtas);
+        return new CtaTimeTableEntity(filteredTimeTableEtas);
     }
 
-    private void filterTimeTableEtas(CTATimeTableEntity ctaTimeTableEntity, List<CTAEtaEntity> filteredEtas) {
-        for (CTAEtaEntity ctaEtaEntity : ctaTimeTableEntity.getPredictions()) {
+    private void filterTimeTableEtas(CtaTimeTableEntity ctaTimeTableEntity, List<CtaEtaEntity> filteredEtas) {
+        for (CtaEtaEntity ctaEtaEntity : ctaTimeTableEntity.getPredictions()) {
             String lineName = ctaEtaEntity.getLine();
             String destination = ctaEtaEntity.getDestination();
 

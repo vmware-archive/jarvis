@@ -1,4 +1,4 @@
-package com.pivotallabs.jarvis.cta;
+package com.pivotallabs.jarvis.publictransit.cta;
 
 import javax.xml.bind.annotation.XmlElement;
 import java.text.ParseException;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CTAEtaEntity {
+public class CtaEtaEntity {
     private static final Map<String, String> lineIdToName;
     private static final SimpleDateFormat iso8601DateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     private static final SimpleDateFormat ctaDateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss");

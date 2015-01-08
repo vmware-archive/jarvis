@@ -1,4 +1,4 @@
-package com.pivotallabs.jarvis.cta;
+package com.pivotallabs.jarvis.publictransit.cta;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "ctatt")
-public class CTATimeTableEntity {
+public class CtaTimeTableEntity {
 
-    public CTATimeTableEntity() {
+    public CtaTimeTableEntity() {
     }
 
-    public CTATimeTableEntity(List<CTAEtaEntity> predictions) {
+    public CtaTimeTableEntity(List<CtaEtaEntity> predictions) {
         this.predictions = predictions;
     }
 
     @XmlElement(name = "eta")
-    private List<CTAEtaEntity> predictions = new ArrayList<>();
+    private List<CtaEtaEntity> predictions = new ArrayList<>();
 
-    public List<CTAEtaEntity> getPredictions() {
+    public List<CtaEtaEntity> getPredictions() {
         return predictions;
     }
 }

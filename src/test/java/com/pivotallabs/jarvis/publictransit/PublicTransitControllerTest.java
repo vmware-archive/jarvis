@@ -1,5 +1,7 @@
-package com.pivotallabs.jarvis.cta;
+package com.pivotallabs.jarvis.publictransit;
 
+import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableEntity;
+import com.pivotallabs.jarvis.publictransit.cta.CtaPublicTransitService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -15,13 +17,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class CTAPanelControllerTest {
+public class PublicTransitControllerTest {
 
     @Mock
-    CTAPanelDataProvider dataProvider;
+    CtaPublicTransitService dataProvider;
 
     @InjectMocks
-    CTAPanelController controller;
+    PublicTransitController controller;
 
     @Before
     public void setup() {
@@ -31,19 +33,19 @@ public class CTAPanelControllerTest {
     @Test
     public void showEndpointMapping() throws Exception {
         MockMvc mockMvc = standaloneSetup(controller).build();
-        when(dataProvider.loadPanelData()).thenReturn(new CTATimeTableEntity());
+        when(dataProvider.loadPanelData()).thenReturn(new CtaTimeTableEntity());
 
-        mockMvc.perform(get("/api/panels/cta"))
+        mockMvc.perform(get("/api/public-transit"))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json"));
     }
 
     @Test
     public void showReturnsCTATimeTableEntity() {
-        CTATimeTableEntity expectedEntity = new CTATimeTableEntity();
+        CtaTimeTableEntity expectedEntity = new CtaTimeTableEntity();
         when(dataProvider.loadPanelData()).thenReturn(expectedEntity);
 
-        CTATimeTableEntity actualEntity = controller.show();
+        CtaTimeTableEntity actualEntity = controller.show();
 
         assertThat(actualEntity, is(expectedEntity));
     }
