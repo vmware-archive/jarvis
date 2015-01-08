@@ -4,6 +4,12 @@
 
 ![Angry](angry.gif)
 
+# Setup
+
+1. Copy and update `src/main/resources/application.properties.example` to `src/main/resources/application.properties`
+2. Copy and update `src/main/resources/pivots.json.example` to `src/main/resources/pivots.json`
+3. `mvn package exec:java`
+
 # Notes
 
 Here's a curl command to get all pivots:
