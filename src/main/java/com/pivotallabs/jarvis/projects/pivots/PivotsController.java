@@ -1,4 +1,4 @@
-package com.pivotallabs.jarvis.pivots;
+package com.pivotallabs.jarvis.projects.pivots;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

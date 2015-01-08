@@ -1,4 +1,4 @@
-package com.pivotallabs.jarvis.pivots;
+package com.pivotallabs.jarvis.projects.pivots;
 
 import org.junit.Before;
 import org.junit.Test;
