@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class ProjectsControllerTest {
 
     @Mock
-    private ProjectService provider;
+    private ProjectService projectService;
 
     @InjectMocks
     private ProjectsController controller;
@@ -34,17 +34,17 @@ public class ProjectsControllerTest {
     @Test
     public void listProjects_EndpointMapping() throws Exception {
         MockMvc mockMvc = standaloneSetup(controller).build();
-        when(provider.findAllProjects()).thenReturn(Arrays.asList(new ProjectEntity()));
+        when(projectService.findAllProjects()).thenReturn(Arrays.asList(new ProjectEntity()));
 
-        mockMvc.perform(get("/api/panels/projects"))
+        mockMvc.perform(get("/api/projects"))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"));
     }
 
     @Test
-    public void listProjects_ReturnsDataFromProvider() {
+    public void listProjects_ReturnsProjects() {
         ProjectEntity expectedProject = new ProjectEntity();
-        when(provider.findAllProjects()).thenReturn(Arrays.asList(expectedProject, new ProjectEntity()));
+        when(projectService.findAllProjects()).thenReturn(Arrays.asList(expectedProject, new ProjectEntity()));
 
         ProjectsController.ProjectEntityWrapper projectEntityWrapper = controller.listProjects();
 

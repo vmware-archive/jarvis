@@ -1,16 +1,20 @@
 package com.pivotallabs.jarvis.projects;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectEntity {
-
+    private int id;
     private String name;
+    private List<AllocationEntity> allocations = new ArrayList<>();
 
-    @JsonProperty("pivotsByWeek")
-    private List<PivotEntity> pivots = new ArrayList<>();
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -20,15 +24,15 @@ public class ProjectEntity {
         this.name = name;
     }
 
-    public List<PivotEntity> getPivots() {
-        return pivots;
+    public List<AllocationEntity> getAllocations() {
+        return allocations;
     }
 
-    public void setPivots(List<PivotEntity> pivots) {
-        this.pivots = pivots;
+    public void setAllocations(List<AllocationEntity> allocations) {
+        this.allocations = allocations;
     }
-    
-    public void addPivot(PivotEntity pivot) {
-        this.pivots.add(pivot);
+
+    public void addAllocation(AllocationEntity allocationEntity) {
+        this.allocations.add(allocationEntity);
     }
 }
