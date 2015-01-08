@@ -11,15 +11,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 @Service
-public class PivotsPanelDataProvider {
+public class PivotService {
     private String pivotsFilename;
 
     @Autowired
-    public PivotsPanelDataProvider(@Value("${pivots.filename}") String pivotsFilename) {
+    public PivotService(@Value("${pivots.filename}") String pivotsFilename) {
         this.pivotsFilename = pivotsFilename;
     }
 
-    public Object loadPanelData() {
+    public Object findAllPivots() {
         try(InputStream pivotsInputStream = getClass().getResourceAsStream(pivotsFilename)) {
             BufferedReader bufferedContentReader = new BufferedReader(new InputStreamReader(pivotsInputStream));
             StringBuilder buffer = new StringBuilder();

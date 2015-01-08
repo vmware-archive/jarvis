@@ -11,22 +11,22 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-public class PivotsPanelControllerTest {
+public class PivotsControllerTest {
     private MockMvc mockMvc;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
 
-        PivotsPanelDataProvider provider = new PivotsPanelDataProvider("/pivots.json");
-        PivotsPanelController controller = new PivotsPanelController(provider);
+        PivotService provider = new PivotService("/pivots.json");
+        PivotsController controller = new PivotsController(provider);
 
         mockMvc = standaloneSetup(controller).build();
     }
 
     @Test
     public void getsPivotsData() throws Exception {
-        mockMvc.perform(get("/api/panels/pivots"))
+        mockMvc.perform(get("/api/pivots"))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
             .andExpect(jsonPath("$.pivots", hasSize(1)))

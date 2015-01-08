@@ -10,7 +10,7 @@ angular.
             }
             isLoading = true;
 
-            http.get('/api/panels/pivots').success(function (data) {
+            http.get('/api/pivots').success(function (data) {
                 angular.forEach(data.pivots, function (pivot) {
                     if (cachedPivots.email[pivot.email]) {
                         angular.extend(cachedPivots.email[pivot.email], pivot);
