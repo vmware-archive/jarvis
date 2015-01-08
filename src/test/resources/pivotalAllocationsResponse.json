@@ -1,0 +1,140 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "potential": false,
+      "skills": [3],
+      "name": "Hackathon",
+      "product_description": "Build whatever",
+      "visible": true,
+      "type": "billable",
+      "offsite": false,
+      "project_attributes": "",
+      "client_liaison": "CL",
+      "product_manager": null,
+      "current_version_number": 31,
+      "elapsed_weeks": null
+    },
+    {
+      "id": 2,
+      "potential": false,
+      "skills": [
+        3,
+        1,
+        4
+      ],
+      "name": "Chicago Status Board",
+      "product_description": "TBD",
+      "visible": true,
+      "type": "billable",
+      "offsite": false,
+      "project_attributes": "Allows Interviews",
+      "client_liaison": "CL",
+      "product_manager": null,
+      "current_version_number": 86,
+      "elapsed_weeks": "38th"
+    },
+    {
+      "id": -1,
+      "name": "Unallocated",
+      "type": "unallocated"
+    }
+  ],
+  "allocations": [
+    {
+      "person_tile_id": "2015-01-05-357634",
+      "allocation_id": 1,
+      "person_id": 1,
+      "project_id": 1,
+      "anchor": false,
+      "at_location": false,
+      "filtered": true,
+      "week_start": "2015-01-05",
+      "last_week": null,
+      "first_week": null,
+      "days_on_vacation": []
+    },
+    {
+      "person_tile_id": "2015-01-05-357324",
+      "allocation_id": 2,
+      "person_id": 2,
+      "project_id": 1,
+      "anchor": false,
+      "at_location": false,
+      "filtered": true,
+      "week_start": "2015-01-05",
+      "last_week": null,
+      "first_week": null,
+      "days_on_vacation": []
+    },
+    {
+      "person_tile_id": "2015-01-05-357087",
+      "allocation_id": 4,
+      "person_id": 3,
+      "project_id": 2,
+      "anchor": false,
+      "at_location": false,
+      "filtered": true,
+      "week_start": "2015-01-05",
+      "last_week": null,
+      "first_week": null,
+      "days_on_vacation": []
+    },
+    {
+      "person_tile_id": "2015-01-05-101383",
+      "allocation_id": 3,
+      "person_id": 1,
+      "project_id": 1,
+      "anchor": false,
+      "at_location": false,
+      "filtered": true,
+      "week_start": "2015-01-12",
+      "last_week": null,
+      "first_week": null,
+      "days_on_vacation": []
+    }
+  ],
+  "filtered_people": [
+    1,
+    2,
+    3
+  ],
+  "people": [
+    {
+      "id": 1,
+      "name": "Bob Smith",
+      "employment_status": null,
+      "skills": [
+        {
+          "id": 1,
+          "weeks": 7,
+          "desired": true
+        }
+      ],
+      "primary_job": "Developer",
+      "scoping_status": "aspiring"
+    },
+    {
+      "id": 2,
+      "name": "Joe Frank",
+      "employment_status": null,
+      "skills": [
+        {
+          "id": 18,
+          "weeks": 0,
+          "desired": false
+        }
+      ],
+      "primary_job": "Developer",
+      "scoping_status": "no"
+    },
+    {
+      "id": 3,
+      "name": "Mary Sue",
+      "employment_status": null,
+      "skills": [],
+      "primary_job": "Developer",
+      "scoping_status": "no"
+    }
+  ]
+}
