@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class PivotsController {
     private PivotService pivotService;
@@ -14,7 +16,7 @@ public class PivotsController {
     }
 
     @RequestMapping("/api/pivots")
-    public Object findAllPivots() {
+    public Map<String, Object> findAllPivots() {
         return pivotService.findAllPivots();
     }
 }

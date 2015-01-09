@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 @Service
 public class PivotService {
@@ -19,7 +20,7 @@ public class PivotService {
         this.pivotsFilename = pivotsFilename;
     }
 
-    public Object findAllPivots() {
+    public Map<String, Object> findAllPivots() {
         try(InputStream pivotsInputStream = getClass().getResourceAsStream(pivotsFilename)) {
             BufferedReader bufferedContentReader = new BufferedReader(new InputStreamReader(pivotsInputStream));
             StringBuilder buffer = new StringBuilder();
