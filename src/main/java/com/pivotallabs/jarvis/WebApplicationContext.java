@@ -45,7 +45,6 @@ public class WebApplicationContext {
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
 
         objectMapper.addMixInAnnotations(JarvisProjectEntity.class, JacksonMixins.JarvisProjectMixin.class);
         objectMapper.addMixInAnnotations(JarvisAllocationEntity.class, JacksonMixins.JarvisAllocationMixin.class);
