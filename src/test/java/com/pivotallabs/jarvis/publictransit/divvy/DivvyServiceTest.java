@@ -25,7 +25,7 @@ public class DivvyServiceTest {
 
     @Before
     public void setUp() {
-        RestTemplate restTemplate = TestUtils.testRestTemplate();
+        RestTemplate restTemplate = TestUtils.restTemplate();
         mockServer = MockRestServiceServer.createServer(restTemplate);
         divvyService = new DivvyService(restTemplate, "5, 14");
     }
@@ -58,6 +58,6 @@ public class DivvyServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void creatingADivvyServiceWithNullNearbyDivvyStationIdsThrowsAnException() {
-        new DivvyService(TestUtils.testRestTemplate(), null);
+        new DivvyService(TestUtils.restTemplate(), null);
     }
 }

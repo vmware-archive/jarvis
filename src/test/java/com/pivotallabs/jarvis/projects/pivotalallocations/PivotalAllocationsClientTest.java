@@ -23,7 +23,7 @@ public class PivotalAllocationsClientTest {
 
     @Before
     public void setUp() {
-        RestTemplate restTemplate = TestUtils.testRestTemplate();
+        RestTemplate restTemplate = TestUtils.restTemplate();
         mockServer = MockRestServiceServer.createServer(restTemplate);
         client = new PivotalAllocationsClient(restTemplate, "cookie-value");
     }
