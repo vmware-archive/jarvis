@@ -6,3 +6,4 @@ target/
 
 src/main/resources/pivots.json
 application.properties
+junk.*
