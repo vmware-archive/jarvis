@@ -13,7 +13,6 @@ import java.util.*;
 
 @Service
 public class TwilioSmsMessageService implements SmsMessageService {
-
     private TwilioRestClient twilioRestClient;
     private DateFormat todayFormat;
 
@@ -24,16 +23,13 @@ public class TwilioSmsMessageService implements SmsMessageService {
         this.todayFormat.setTimeZone(TimeZone.getTimeZone("CDT"));
     }
 
-    public Object findAllSmsMessages() {
-        Map<String, Object> jsonRootObject = new HashMap<>();
-        List<Map<String, Object>> jsonMessages = new LinkedList<>();
-        jsonRootObject.put("messages", jsonMessages);
-
+    public Map<String, Object> findAllSmsMessages() {
+        List<Map<String, Object>> messages = new LinkedList<>();
         Map<String, String> twilioRequestFilters = new HashMap<>();
         twilioRequestFilters.put("DateSent", todayFormat.format(new Date()));
 
-        MessageList messages = twilioRestClient.getAccount().getMessages(twilioRequestFilters);
-        for (Message message : messages) {
+        MessageList messageList = twilioRestClient.getAccount().getMessages(twilioRequestFilters);
+        for (Message message : messageList) {
             if ("inbound".equals(message.getDirection())) {
                 Map<String, Object> jsonMessage = new HashMap<>();
                 jsonMessage.put("body", message.getBody());
@@ -41,10 +37,12 @@ public class TwilioSmsMessageService implements SmsMessageService {
                 jsonMessage.put("error", message.getErrorMessage());
                 jsonMessage.put("from", message.getFrom());
                 jsonMessage.put("direction", message.getDirection());
-                jsonMessages.add(jsonMessage);
+                messages.add(jsonMessage);
             }
         }
 
-        return jsonRootObject;
+        Map<String, Object> jsonRoot = new HashMap<>();
+        jsonRoot.put("messages", messages);
+        return jsonRoot;
     }
 }

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class SmsMessagesController {
     private SmsMessageService smsMessageService;
@@ -14,7 +16,7 @@ public class SmsMessagesController {
     }
 
     @RequestMapping("/api/sms-messages")
-    public Object listMessages() {
+    public Map<String, Object> listMessages() {
         return smsMessageService.findAllSmsMessages();
     }
 

@@ -1,5 +1,7 @@
 package com.pivotallabs.jarvis.sms;
 
+import java.util.Map;
+
 public interface SmsMessageService {
-    Object findAllSmsMessages();
+    Map<String, Object> findAllSmsMessages();
 }
