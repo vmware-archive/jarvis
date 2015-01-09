@@ -58,8 +58,6 @@ public class DivvyServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void creatingADivvyServiceWithNullNearbyDivvyStationIdsThrowsAnException() {
-        RestTemplate restTemplate = TestUtils.testRestTemplate();
-
-        new DivvyService(restTemplate, null);
+        new DivvyService(TestUtils.testRestTemplate(), null);
     }
 }

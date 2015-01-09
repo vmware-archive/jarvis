@@ -1,6 +1,6 @@
-package com.pivotallabs.jarvis.projects;
+package com.pivotallabs.jarvis.projects.domain;
 
-public class EmployeeEntity {
+public class JarvisPivotEntity {
     private int id;
     private String name;
 

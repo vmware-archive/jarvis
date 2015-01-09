@@ -1,12 +1,12 @@
-package com.pivotallabs.jarvis.projects;
+package com.pivotallabs.jarvis.projects.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectEntity {
+public class JarvisProjectEntity {
     private int id;
     private String name;
-    private List<AllocationEntity> allocations = new ArrayList<>();
+    private List<JarvisAllocationEntity> allocations = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -24,15 +24,15 @@ public class ProjectEntity {
         this.name = name;
     }
 
-    public List<AllocationEntity> getAllocations() {
+    public List<JarvisAllocationEntity> getAllocations() {
         return allocations;
     }
 
-    public void setAllocations(List<AllocationEntity> allocations) {
+    public void setAllocations(List<JarvisAllocationEntity> allocations) {
         this.allocations = allocations;
     }
 
-    public void addAllocation(AllocationEntity allocationEntity) {
+    public void addAllocation(JarvisAllocationEntity allocationEntity) {
         this.allocations.add(allocationEntity);
     }
 }

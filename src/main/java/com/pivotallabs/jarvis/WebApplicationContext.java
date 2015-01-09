@@ -1,8 +1,13 @@
 package com.pivotallabs.jarvis;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.pivotallabs.jarvis.projects.domain.JarvisAllocationEntity;
+import com.pivotallabs.jarvis.projects.domain.JarvisPivotEntity;
+import com.pivotallabs.jarvis.projects.domain.JarvisProjectEntity;
+import com.pivotallabs.jarvis.publictransit.divvy.DivvyStationEntity;
 import com.twilio.sdk.TwilioRestClient;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -26,7 +31,10 @@ public class WebApplicationContext {
     }
 
     @Bean
-    public RestTemplate restTemplate(MappingJackson2HttpMessageConverter converter) {
+    public RestTemplate restTemplate(ObjectMapper objectMapper) {
+        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        converter.setObjectMapper(objectMapper);
+
         RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
         restTemplate.getMessageConverters().add(0, converter);
 
@@ -34,17 +42,15 @@ public class WebApplicationContext {
     }
 
     @Bean
-    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        converter.setObjectMapper(objectMapper);
-
-        return converter;
-    }
-
-    @Bean
     public ObjectMapper objectMapper() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
+
+        objectMapper.addMixInAnnotations(JarvisProjectEntity.class, JacksonMixins.JarvisProjectMixin.class);
+        objectMapper.addMixInAnnotations(JarvisAllocationEntity.class, JacksonMixins.JarvisAllocationMixin.class);
+        objectMapper.addMixInAnnotations(JarvisPivotEntity.class, JacksonMixins.JarvisEmployeeMixin.class);
+        objectMapper.addMixInAnnotations(DivvyStationEntity.class, JacksonMixins.JarvisDivvyStationMixin.class);
 
         return objectMapper;
     }

@@ -1,5 +1,6 @@
 package com.pivotallabs.jarvis.projects;
 
+import com.pivotallabs.jarvis.projects.domain.JarvisProjectEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -34,7 +35,7 @@ public class ProjectsControllerTest {
     @Test
     public void listProjects_EndpointMapping() throws Exception {
         MockMvc mockMvc = standaloneSetup(controller).build();
-        when(projectService.findAllProjects()).thenReturn(Arrays.asList(new ProjectEntity()));
+        when(projectService.findAllProjects()).thenReturn(Arrays.asList(new JarvisProjectEntity()));
 
         mockMvc.perform(get("/api/projects"))
             .andExpect(status().isOk())
@@ -43,8 +44,8 @@ public class ProjectsControllerTest {
 
     @Test
     public void listProjects_ReturnsProjects() {
-        ProjectEntity expectedProject = new ProjectEntity();
-        when(projectService.findAllProjects()).thenReturn(Arrays.asList(expectedProject, new ProjectEntity()));
+        JarvisProjectEntity expectedProject = new JarvisProjectEntity();
+        when(projectService.findAllProjects()).thenReturn(Arrays.asList(expectedProject, new JarvisProjectEntity()));
 
         ProjectsController.ProjectEntityWrapper projectEntityWrapper = controller.listProjects();
 
