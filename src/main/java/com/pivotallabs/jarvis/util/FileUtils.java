@@ -1,4 +1,4 @@
-package util;
+package com.pivotallabs.jarvis.util;
 
 import org.springframework.core.io.ClassPathResource;
 

@@ -1,10 +1,10 @@
 package com.pivotallabs.jarvis.projects.pivots;
 
+import com.pivotallabs.jarvis.projects.domain.JarvisPivotEntity;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -20,14 +20,13 @@ public class PivotServiceTest {
 
     @Test
     public void findAllPivots_ReturnsPivots() {
-        Map<String, Object> actualPivots = pivotService.findAllPivots();
+        List<JarvisPivotEntity> actualPivots = pivotService.findAllPivots();
 
-        List<Map<String, Object>> pivots = (List<Map<String, Object>>) actualPivots.get("pivots");
-        assertThat(pivots, hasSize(1));
+        assertThat(actualPivots, hasSize(2));
 
-        Map<String, Object> pivot = pivots.get(0);
-        assertThat(pivot.get("name"), is("Gloria Coley"));
-        assertThat(pivot.get("email"), is("gcoley@example.com"));
-        assertThat(pivot.get("phone"), is("+1123456789"));
+        JarvisPivotEntity pivot = actualPivots.get(0);
+        assertThat(pivot.getName(), is("Gloria Coley"));
+        assertThat(pivot.getEmail(), is("gcoley@example.com"));
+        assertThat(pivot.getPhone(), is("+1123456789"));
     }
 }

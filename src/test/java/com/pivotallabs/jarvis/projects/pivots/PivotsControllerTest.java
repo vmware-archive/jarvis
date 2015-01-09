@@ -1,14 +1,14 @@
 package com.pivotallabs.jarvis.projects.pivots;
 
-import org.junit.Assert;
+import com.pivotallabs.jarvis.projects.domain.JarvisPivotEntity;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.mockito.Mockito.when;
@@ -37,7 +37,7 @@ public class PivotsControllerTest {
 
     @Test
     public void findAllPivots_EndpointMapping() throws Exception {
-        when(pivotService.findAllPivots()).thenReturn(new HashMap<>());
+        when(pivotService.findAllPivots()).thenReturn(new ArrayList<>());
 
         mockMvc.perform(get("/api/pivots"))
             .andExpect(status().isOk())
@@ -46,11 +46,11 @@ public class PivotsControllerTest {
 
     @Test
     public void findAllPivots_ReturnsPivots() throws Exception {
-        Map<String, Object> expectedPivots = new HashMap<>();
+        ArrayList<JarvisPivotEntity> expectedPivots = new ArrayList<>();
         when(pivotService.findAllPivots()).thenReturn(expectedPivots);
 
-        Object actualPivots = controller.findAllPivots();
-
-        Assert.assertThat(expectedPivots, is(sameInstance(actualPivots)));
+        PivotsController.ListPivotsWrapper response = controller.findAllPivots();
+        
+        assertThat(response.getPivots(), sameInstance(expectedPivots));
     }
 }

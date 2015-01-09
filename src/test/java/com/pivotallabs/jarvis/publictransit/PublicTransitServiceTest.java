@@ -3,13 +3,13 @@ package com.pivotallabs.jarvis.publictransit;
 import com.pivotallabs.jarvis.publictransit.cta.JarvisEtaEntity;
 import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableApiResponse;
 import com.pivotallabs.jarvis.publictransit.cta.CtaPublicTransitService;
+import com.pivotallabs.jarvis.util.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
-import util.FileUtils;
 
 import java.io.IOException;
 

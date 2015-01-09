@@ -1,12 +1,12 @@
 package com.pivotallabs.jarvis.projects.pivotalallocations;
 
+import com.pivotallabs.jarvis.util.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
-import util.FileUtils;
 import util.TestUtils;
 
 import java.io.IOException;
