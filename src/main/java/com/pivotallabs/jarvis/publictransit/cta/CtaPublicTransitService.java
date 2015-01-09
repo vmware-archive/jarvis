@@ -35,7 +35,7 @@ public class CtaPublicTransitService {
         this.apiKey = apiKey;
     }
 
-    public CtaTimeTableEntity loadPanelData() {
+    public CtaTimeTableEntity getCtaTimeTable() {
         String stopIdUrl = MessageFormat.format("{0}?key={1}&stpid={2}&max=100", CTA_API_URL, apiKey, CLARK_AND_LAKE_BLUE_LINE);
         ResponseEntity<CtaTimeTableEntity> entity1 = restTemplate.getForEntity(stopIdUrl, CtaTimeTableEntity.class);
 

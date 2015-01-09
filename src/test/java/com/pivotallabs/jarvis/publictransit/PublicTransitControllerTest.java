@@ -41,7 +41,7 @@ public class PublicTransitControllerTest {
     @Test
     public void showCtaTimeTable_EndpointMapping() throws Exception {
         MockMvc mockMvc = standaloneSetup(controller).build();
-        when(ctaService.loadPanelData()).thenReturn(new CtaTimeTableEntity());
+        when(ctaService.getCtaTimeTable()).thenReturn(new CtaTimeTableEntity());
 
         mockMvc.perform(get("/api/public-transit/cta-timetable"))
             .andExpect(status().isOk())
@@ -51,7 +51,7 @@ public class PublicTransitControllerTest {
     @Test
     public void showCtaTimeTable_ReturnsTheCtaTimeTable() {
         CtaTimeTableEntity expectedEntity = new CtaTimeTableEntity();
-        when(ctaService.loadPanelData()).thenReturn(expectedEntity);
+        when(ctaService.getCtaTimeTable()).thenReturn(expectedEntity);
 
         CtaTimeTableEntity actualEntity = controller.showCtaTimeTable();
 

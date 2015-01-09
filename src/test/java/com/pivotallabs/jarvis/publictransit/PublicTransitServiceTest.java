@@ -35,7 +35,7 @@ public class PublicTransitServiceTest {
     }
 
     @Test
-    public void loadPanelDataReturnsCTATimeTableEntity() throws IOException {
+    public void getCtaTimeTable_ReturnsCtaTimeTableEntity() throws IOException {
         mockServer
             .expect(requestTo("http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=123456&stpid=30374,30375&max=100"))
             .andExpect(method(HttpMethod.GET))
@@ -45,7 +45,7 @@ public class PublicTransitServiceTest {
             .andExpect(method(HttpMethod.GET))
             .andRespond(withSuccess(FileUtils.readFile("cta.xml"), MediaType.APPLICATION_XML));
 
-        CtaTimeTableEntity entity = publicTransitService.loadPanelData();
+        CtaTimeTableEntity entity = publicTransitService.getCtaTimeTable();
 
         mockServer.verify();
 
