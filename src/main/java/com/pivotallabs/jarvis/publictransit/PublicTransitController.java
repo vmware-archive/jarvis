@@ -1,7 +1,7 @@
 package com.pivotallabs.jarvis.publictransit;
 
 import com.pivotallabs.jarvis.publictransit.cta.CtaPublicTransitService;
-import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableEntity;
+import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableApiResponse;
 import com.pivotallabs.jarvis.publictransit.divvy.DivvyService;
 import com.pivotallabs.jarvis.publictransit.divvy.DivvyStationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class PublicTransitController {
     }
 
     @RequestMapping(value = "/api/public-transit/cta-timetable", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CtaTimeTableEntity showCtaTimeTable() {
+    public CtaTimeTableApiResponse showCtaTimeTable() {
         return publicTransitService.getCtaTimeTable();
     }
 

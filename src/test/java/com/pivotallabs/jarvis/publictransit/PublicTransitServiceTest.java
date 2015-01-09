@@ -1,7 +1,7 @@
 package com.pivotallabs.jarvis.publictransit;
 
-import com.pivotallabs.jarvis.publictransit.cta.CtaEtaEntity;
-import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableEntity;
+import com.pivotallabs.jarvis.publictransit.cta.JarvisEtaEntity;
+import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableApiResponse;
 import com.pivotallabs.jarvis.publictransit.cta.CtaPublicTransitService;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,20 +45,20 @@ public class PublicTransitServiceTest {
             .andExpect(method(HttpMethod.GET))
             .andRespond(withSuccess(FileUtils.readFile("cta.xml"), MediaType.APPLICATION_XML));
 
-        CtaTimeTableEntity entity = publicTransitService.getCtaTimeTable();
+        CtaTimeTableApiResponse entity = publicTransitService.getCtaTimeTable();
 
         mockServer.verify();
 
         assertThat(entity, not(nullValue()));
         assertThat(entity.getPredictions(), hasSize(4));
 
-        CtaEtaEntity firstCtaEtaEntity = entity.getPredictions().get(0);
+        JarvisEtaEntity firstCtaEtaEntity = entity.getPredictions().get(0);
         assertThat(firstCtaEtaEntity.getStation(), is("Merchandise Mart"));
         assertThat(firstCtaEtaEntity.getLine(), is("Brown"));
         assertThat(firstCtaEtaEntity.getDestination(), is("Kimball"));
         assertThat(firstCtaEtaEntity.getUpcomingTime(), is("2014-10-20T11:59:35"));
 
-        CtaEtaEntity secondCtaEtaEntity = entity.getPredictions().get(1);
+        JarvisEtaEntity secondCtaEtaEntity = entity.getPredictions().get(1);
         assertThat(secondCtaEtaEntity.getStation(), is("Merchandise Mart"));
         assertThat(secondCtaEtaEntity.getLine(), is("Brown"));
         assertThat(secondCtaEtaEntity.getDestination(), is("Kimball"));

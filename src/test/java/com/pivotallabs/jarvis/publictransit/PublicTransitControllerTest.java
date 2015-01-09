@@ -1,7 +1,7 @@
 package com.pivotallabs.jarvis.publictransit;
 
 import com.pivotallabs.jarvis.publictransit.cta.CtaPublicTransitService;
-import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableEntity;
+import com.pivotallabs.jarvis.publictransit.cta.CtaTimeTableApiResponse;
 import com.pivotallabs.jarvis.publictransit.divvy.DivvyService;
 import com.pivotallabs.jarvis.publictransit.divvy.DivvyStationEntity;
 import org.junit.Before;
@@ -41,7 +41,7 @@ public class PublicTransitControllerTest {
     @Test
     public void showCtaTimeTable_EndpointMapping() throws Exception {
         MockMvc mockMvc = standaloneSetup(controller).build();
-        when(ctaService.getCtaTimeTable()).thenReturn(new CtaTimeTableEntity());
+        when(ctaService.getCtaTimeTable()).thenReturn(new CtaTimeTableApiResponse());
 
         mockMvc.perform(get("/api/public-transit/cta-timetable"))
             .andExpect(status().isOk())
@@ -50,10 +50,10 @@ public class PublicTransitControllerTest {
 
     @Test
     public void showCtaTimeTable_ReturnsTheCtaTimeTable() {
-        CtaTimeTableEntity expectedEntity = new CtaTimeTableEntity();
+        CtaTimeTableApiResponse expectedEntity = new CtaTimeTableApiResponse();
         when(ctaService.getCtaTimeTable()).thenReturn(expectedEntity);
 
-        CtaTimeTableEntity actualEntity = controller.showCtaTimeTable();
+        CtaTimeTableApiResponse actualEntity = controller.showCtaTimeTable();
 
         assertThat(actualEntity, is(expectedEntity));
     }

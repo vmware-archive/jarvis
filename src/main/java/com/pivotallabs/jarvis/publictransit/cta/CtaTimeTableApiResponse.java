@@ -6,19 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "ctatt")
-public class CtaTimeTableEntity {
+public class CtaTimeTableApiResponse {
+    @XmlElement(name = "eta")
+    private List<JarvisEtaEntity> predictions = new ArrayList<>();
 
-    public CtaTimeTableEntity() {
+    public CtaTimeTableApiResponse() {
     }
 
-    public CtaTimeTableEntity(List<CtaEtaEntity> predictions) {
+    public CtaTimeTableApiResponse(List<JarvisEtaEntity> predictions) {
         this.predictions = predictions;
     }
 
-    @XmlElement(name = "eta")
-    private List<CtaEtaEntity> predictions = new ArrayList<>();
-
-    public List<CtaEtaEntity> getPredictions() {
+    public List<JarvisEtaEntity> getPredictions() {
         return predictions;
     }
 }
