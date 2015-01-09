@@ -7,10 +7,10 @@ body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-cta > i {font-size: 100px; transform: rotate(180deg); color: #222224; }
 
 .panel-cta .predictions li {list-style-type:none;}
-.panel-cta .predictions > li { width:550px; display:block; float:left; margin:0 20px 20px 0;}
+.panel-cta .predictions > li { width:auto; display:block; float:left; margin:0 20px 20px 0;}
 .panel-cta .predictions h2 { text-align: center; background:#222224; font-weight:normal; padding:5px;}
-.panel-cta .times {background: #4f4f4f; display:flex; width:70%; margin:0 15%;}
-.panel-cta .times li {color:white; text-align:center; margin:5px auto; width:auto; font-weight:bold; font-size:50px;}
+.panel-cta .times {background: #4f4f4f; display:flex; margin:0 30px; text-align:center;}
+.panel-cta .times li {color:white; text-align:center; margin:5px 30px; font-weight:bold; font-size:50px;}
 
 .panel-cta .line-Brown      { background: #62361b; }
 .panel-cta .line-Blue       { background: #00a1de; }
@@ -20,19 +20,16 @@ body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-cta .line-Pink       { background: #e27ea6; }
 .panel-cta .line-Red        { background: #c60c30; }
 
-.panel-allocations { background-color: #2ecc71; }
+.panel-allocations { }
 .panel-allocations table { border-spacing: 10px; border-collapse: collapse; width: 100%; }
 .panel-allocations table td,
-.panel-allocations table th { border-bottom: 1px solid rgba(255,255,255,0.2); padding: 20px; text-align: left; font-weight: normal; font-size: 30px; }
-.panel-allocations table th.private { -webkit-filter: blur(8px) invert(100%); -webkit-transition: 0.2s; text-transform: uppercase; }
-.panel-allocations table th.private:hover { -webkit-filter: none; text-transform: none;  }
+.panel-allocations table th { padding: 20px; text-align: left; font-weight: normal; font-size: 30px; }
 .panel-allocations ul { list-style: none; }
 .panel-allocations .projects { width: 100%; }
-.panel-allocations .projects > li { position: relative; border-bottom: 1px solid rgba(255,255,255,0.2); padding-left: 15px; white-space: nowrap; }
+.panel-allocations .projects > li { position: relative; border-bottom: 4px solid rgba(255,255,255,0.2);  padding-left: 15px; white-space: nowrap; }
 .panel-allocations .projects name { font-size: 32px; line-height: 70px; }
-.panel-allocations .pivots { position: absolute; right: 0; top: 0; bottom: 0; padding: 5px 5px 5px 15px; background: -webkit-linear-gradient(left, rgba(46,204,113,0) 0%,rgba(46,204,113,1) 15px,rgba(46,204,113,1) 99%);  }
+.panel-allocations .pivots { position: absolute; right: 0; top: 0; bottom: 0; padding: 5px 5px 5px 15px; }
 .panel-allocations .pivots li { display: inline; padding-left: 15px; padding-right: 15px }
-.panel-allocations > i { position: absolute; bottom: -15px; left: -10px; font-size: 100px; color: #222224; }
 
 .panel-weather { display:none; }
 .panel-weather h1 { font-size: 90px; right: 10px; top: 30px; }
@@ -47,7 +44,7 @@ body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-weather [icon=wi-fog],
 .panel-weather [icon=wi-snow] { top: -60px; }
 
-jv-pivot { display: inline-block; background: #000; border-radius: 40px; font-size: 26px; margin: 0 5px; text-align: center; width: 60px; font-family: "Courier"; line-height: 60px; }
+jv-pivot { display: inline-block; background: #DEDEDE; border-radius: 40px; font-size: 26px; margin: 0 5px; text-align: center; width: 60px; font-family: "Courier"; color:black; line-height: 60px; }
 
 .panel-messages { background: #f1c40f; position: relative; overflow: hidden; height: 120px; }
 .panel-messages .track { white-space: nowrap; overflow: hidden; margin: 0 20px; }
@@ -58,7 +55,7 @@ jv-pivot { display: inline-block; background: #000; border-radius: 40px; font-si
 .panel-messages .messages li.end { background: black; width: 0px; color: black; }
 .panel-messages .number-to-sms { padding: 20px; font-size: 26px; background: #e67e22; position: absolute; top: 0; bottom: 0; right: 0; border-radius: 0 20px 20px 0; line-height:120px;}
 .panel-messages .number-to-sms > i { position: absolute; bottom: 40px; right: 80px; font-size: 100px; color: #222224; }
-
+.panel-messages jv-pivot {background-color:#222222; color:white; }
 @-webkit-keyframes slide {
     from { -webkit-transform: translateX(0%); }
     to { -webkit-transform: translateX(-20%); }

@@ -28,7 +28,9 @@
                     <li class="line-{{prediction.line}}" ng-repeat="(destination, times) in prediction.destinations">
                         <h2>{{prediction.station}} to {{destination}}</h2>
                         <ol class="times">
-                            <li ng-repeat="time in times" ng-bind-html="trust(time.locale('en-terse').fromNow())"/>
+                            <li ng-repeat="time in times">
+                                <p ng-bind-html="trust(time.locale('en-terse').fromNow())" />
+                            </li>
                         </ol>
                     </li>
                 </ul>
