@@ -9,7 +9,7 @@ public class JarvisAllocationEntity {
     private String weekStart;
 
     private String startDate;
-    private JarvisPivotEntity employee;
+    private JarvisPivotEntity pivot;
 
     public int getPersonId() {
         return personId;
@@ -43,11 +43,11 @@ public class JarvisAllocationEntity {
         this.startDate = startDate;
     }
 
-    public JarvisPivotEntity getEmployee() {
-        return employee;
+    public JarvisPivotEntity getPivot() {
+        return pivot;
     }
 
-    public void setEmployee(JarvisPivotEntity employee) {
-        this.employee = employee;
+    public void setPivot(JarvisPivotEntity pivot) {
+        this.pivot = pivot;
     }
 }

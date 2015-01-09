@@ -1,14 +1,15 @@
 package com.pivotallabs.jarvis.projects.pivotalallocations;
 
+import com.pivotallabs.jarvis.projects.ProjectService;
 import com.pivotallabs.jarvis.projects.domain.JarvisAllocationEntity;
 import com.pivotallabs.jarvis.projects.domain.JarvisPivotEntity;
 import com.pivotallabs.jarvis.projects.domain.JarvisProjectEntity;
-import com.pivotallabs.jarvis.projects.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class PivotalAllocationsProjectService implements ProjectService {
@@ -24,64 +25,58 @@ public class PivotalAllocationsProjectService implements ProjectService {
         PivotalAllocationsApiResponse apiResponse = pivotalAllocationsClient.findAllAllocations();
 
         // get projects
-        List<JarvisProjectEntity> projects = new ArrayList<>();
-        for (JarvisProjectEntity pivotalAllocationsProjectEntity : apiResponse.getProjects()) {
-            JarvisProjectEntity project = new JarvisProjectEntity();
-            project.setId(pivotalAllocationsProjectEntity.getId());
-            project.setName(pivotalAllocationsProjectEntity.getName());
-            projects.add(project);
-        }
+        List<JarvisProjectEntity> projects = apiResponse.getProjects().stream()
+            .map(project -> {
+                JarvisProjectEntity projectEntity = new JarvisProjectEntity();
+                projectEntity.setId(project.getId());
+                projectEntity.setName(project.getName());
+                return projectEntity;
+            })
+            .collect(toList());
 
-        // get filtered employees
-        List<JarvisPivotEntity> filteredEmployees = new ArrayList<>();
-        for (JarvisPivotEntity employee : apiResponse.getPeople()) {
-            if (apiResponse.getFilteredPeople().contains(employee.getId())) {
-                JarvisPivotEntity employeeEntity = new JarvisPivotEntity();
-                employeeEntity.setId(employee.getId());
-                employeeEntity.setName(employee.getName());
-                filteredEmployees.add(employeeEntity);
-            }
-        }
+        // get filtered pivots
+        List<JarvisPivotEntity> filteredPivots = apiResponse.getPeople().stream()
+            .filter(pivot -> apiResponse.getFilteredPeople().contains(pivot.getId()))
+            .map(pivot -> {
+                JarvisPivotEntity pivotEntity = new JarvisPivotEntity();
+                pivotEntity.setId(pivot.getId());
+                pivotEntity.setName(pivot.getName());
+                return pivotEntity;
+            })
+            .collect(toList());
 
         // get filtered allocations
-        List<JarvisAllocationEntity> filteredAllocations = new ArrayList<>();
-        for (JarvisAllocationEntity allocation : apiResponse.getAllocations()) {
-            if (apiResponse.getFilteredPeople().contains(allocation.getPersonId())) {
-                filteredAllocations.add(allocation);
-            }
-        }
+        List<JarvisAllocationEntity> filteredAllocations = apiResponse.getAllocations().stream()
+            .filter(allocation -> apiResponse.getFilteredPeople().contains(allocation.getPersonId()))
+            .collect(toList());
 
         // create new allocations
-        for (JarvisAllocationEntity allocation : filteredAllocations) {
-            JarvisProjectEntity project = findProjectById(projects, allocation.getProjectId());
-            JarvisPivotEntity employee = findEmployeeById(filteredEmployees, allocation.getPersonId());
+        filteredAllocations.stream()
+            .forEach(allocation -> {
+                JarvisProjectEntity project = findProjectById(projects, allocation.getProjectId());
+                JarvisPivotEntity pivot = findPivotById(filteredPivots, allocation.getPersonId());
 
-            JarvisAllocationEntity allocationEntity = new JarvisAllocationEntity();
-            allocationEntity.setEmployee(employee);
-            allocationEntity.setStartDate(allocation.getWeekStart());
+                JarvisAllocationEntity allocationEntity = new JarvisAllocationEntity();
+                allocationEntity.setPivot(pivot);
+                allocationEntity.setStartDate(allocation.getWeekStart());
 
-            project.addAllocation(allocationEntity);
-        }
+                project.addAllocation(allocationEntity);
+            });
 
         return projects;
     }
 
     private JarvisProjectEntity findProjectById(List<JarvisProjectEntity> projectEntities, int projectId) {
-        for (JarvisProjectEntity chicagoProject : projectEntities) {
-            if (chicagoProject.getId() == projectId) {
-                return chicagoProject;
-            }
-        }
-
-        return null;
+        return projectEntities.stream()
+            .filter(chicagoProject -> chicagoProject.getId() == projectId)
+            .findFirst()
+            .get();
     }
 
-    private JarvisPivotEntity findEmployeeById(List<JarvisPivotEntity> employeeEntities, int employeeId) {
-        for (JarvisPivotEntity chicagoEmployeeEntity : employeeEntities) {
-            if (chicagoEmployeeEntity.getId() == employeeId) {
-                return chicagoEmployeeEntity;
-            }
-        }
-        return null;
+    private JarvisPivotEntity findPivotById(List<JarvisPivotEntity> pivotEntities, int pivotId) {
+        return pivotEntities.stream()
+            .filter(chicagoPivotEntity -> chicagoPivotEntity.getId() == pivotId)
+            .findFirst()
+            .get();
     }
 }

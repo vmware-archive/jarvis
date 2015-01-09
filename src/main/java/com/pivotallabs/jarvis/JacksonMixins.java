@@ -19,7 +19,7 @@ public class JacksonMixins {
         private String weekStart;
     }
 
-    public static class JarvisEmployeeMixin {
+    public static class JarvisPivotMixin {
         @JsonProperty
         private int id;
         @JsonProperty

@@ -83,13 +83,13 @@ public class PivotalAllocationsProjectServiceTest {
         assertThat(teamMembers, hasSize(2));
 
         JarvisAllocationEntity firstMember = teamMembers.get(0);
-        assertThat(firstMember.getEmployee().getId(), is(12345));
-        assertThat(firstMember.getEmployee().getName(), is("John B"));
+        assertThat(firstMember.getPivot().getId(), is(12345));
+        assertThat(firstMember.getPivot().getName(), is("John B"));
         assertThat(firstMember.getStartDate(), is("2015-01-05"));
 
         JarvisAllocationEntity secondMember = teamMembers.get(1);
-        assertThat(secondMember.getEmployee().getId(), is(23456));
-        assertThat(secondMember.getEmployee().getName(), is("Leona Farmer"));
+        assertThat(secondMember.getPivot().getId(), is(23456));
+        assertThat(secondMember.getPivot().getName(), is("Leona Farmer"));
         assertThat(secondMember.getStartDate(), is("2015-01-12"));
 
         JarvisProjectEntity unallocatedProject = projects.get(1);

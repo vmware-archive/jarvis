@@ -39,7 +39,7 @@ public class WebApplicationContext {
 
         objectMapper.addMixInAnnotations(JarvisProjectEntity.class, JacksonMixins.JarvisProjectMixin.class);
         objectMapper.addMixInAnnotations(JarvisAllocationEntity.class, JacksonMixins.JarvisAllocationMixin.class);
-        objectMapper.addMixInAnnotations(JarvisPivotEntity.class, JacksonMixins.JarvisEmployeeMixin.class);
+        objectMapper.addMixInAnnotations(JarvisPivotEntity.class, JacksonMixins.JarvisPivotMixin.class);
         objectMapper.addMixInAnnotations(DivvyStationEntity.class, JacksonMixins.JarvisDivvyStationMixin.class);
 
         return objectMapper;
