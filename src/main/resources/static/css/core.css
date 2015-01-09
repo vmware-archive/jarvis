@@ -56,6 +56,14 @@ jv-pivot { display: inline-block; background: #DEDEDE; border-radius: 40px; font
 .panel-messages .number-to-sms { padding: 20px; font-size: 26px; background: #e67e22; position: absolute; top: 0; bottom: 0; right: 0; border-radius: 0 20px 20px 0; line-height:120px;}
 .panel-messages .number-to-sms > i { position: absolute; bottom: 40px; right: 80px; font-size: 100px; color: #222224; }
 .panel-messages jv-pivot {background-color:#222222; color:white; }
+
+.panel-divvy-stations .divvy-stations > li { width: 300px; list-style: none; margin: 0 20px 20px 0; float: left; }
+.panel-divvy-stations .divvy-stations .divvy-pill { height: 90px; display: block; position: relative; color: #FFF; background: #4f4f4f; border-radius: 15px 15px; box-sizing: border-box; }
+.panel-divvy-stations .divvy-stations h2 { text-align: center; background:#222224; font-weight:normal; padding:5px; color: #fff; height: 65px; }
+.panel-divvy-stations .divvy-pill .background, .fill { position: absolute; bottom: 0; left: 0; }
+.panel-divvy-stations .divvy-pill .background { width: 100%; height: 100%; background-image : url("../images/divvy-logo.png"); background-size: 225px 65px; background-repeat: no-repeat; z-index: 10; background-position: center; }
+.panel-divvy-stations .divvy-pill .fill { width: 100%; background: #3EB4E6; border-radius: 0px 0px 15px 15px; }
+
 @-webkit-keyframes slide {
     from { -webkit-transform: translateX(0%); }
     to { -webkit-transform: translateX(-20%); }

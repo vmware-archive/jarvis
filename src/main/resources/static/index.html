@@ -13,6 +13,7 @@
     <script src="js/messages.js"></script>
     <script src="js/pivots.js"></script>
     <script src="js/weather.js"></script>
+    <script src="js/divvy.js"></script>
     <meta name="viewport" content="width=1080">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -82,10 +83,22 @@
         </div>
         <div class="number-to-sms"><i class="fa fa-mobile"></i> {{numberToSMS}}</div>
     </div>
+
+    <div class="panel panel-divvy-stations" ng-controller="DivvyStationsController">
+        <ul class="divvy-stations">
+            <li ng-repeat="station in divvyStations" id="divvy-station-{{station.id}}">
+                <h2>{{station.stationName}}</h2>
+                <div class="divvy-pill">
+                    <div class="background"></div>
+                    <div class="fill" ng-style="{'height' : station.percentAvailable + '%'}"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <script>
-    angular.bootstrap(document, ['JarvisCTA', 'JarvisAllocations', 'JarvisMessages', 'JarvisPivots', 'JarvisWeather']);
+    angular.bootstrap(document, ['JarvisCTA', 'JarvisAllocations', 'JarvisMessages', 'JarvisPivots', 'JarvisWeather', 'JarvisDivvy']);
 </script>
 </body>
 </html>
