@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class WebApplicationContext {
     @Bean
-    public TwilioRestClient getTwilioRestClient(@Value("${twilio.accountId}") String accountId, @Value("${twilio.authToken}") String authToken) {
+    public TwilioRestClient twilioRestClient(@Value("${twilio.accountId}") String accountId, @Value("${twilio.authToken}") String authToken) {
         return new TwilioRestClient(accountId, authToken);
     }
 
