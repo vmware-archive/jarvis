@@ -9,8 +9,8 @@ body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-cta .predictions li {list-style-type:none;}
 .panel-cta .predictions > li { width:auto; display:block; float:left; margin:0 20px 20px 0;}
 .panel-cta .predictions h2 { text-align: center; background:#222224; font-weight:normal; padding:5px;}
-.panel-cta .times {background: #4f4f4f; display:flex; margin:0 30px; text-align:center;}
-.panel-cta .times li {color:white; text-align:center; margin:5px 30px; font-weight:bold; font-size:50px;}
+.panel-cta .times {background: #4f4f4f; display:flex; margin:0 100px; text-align:center;}
+.panel-cta .times li {color:white; text-align:center; margin:5px 30px; font-weight:bold; font-size:75px;}
 
 .panel-cta .line-Brown      { background: #62361b; }
 .panel-cta .line-Blue       { background: #00a1de; }
@@ -20,7 +20,7 @@ body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-cta .line-Pink       { background: #e27ea6; }
 .panel-cta .line-Red        { background: #c60c30; }
 
-.panel-allocations { }
+.panel-allocations {float:left; width:85%; }
 .panel-allocations table { border-spacing: 10px; border-collapse: collapse; width: 100%; }
 .panel-allocations table td,
 .panel-allocations table th { padding: 20px; text-align: left; font-weight: normal; font-size: 30px; }
@@ -31,13 +31,18 @@ body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-allocations .pivots { position: absolute; right: 0; top: 0; bottom: 0; padding: 5px 5px 5px 15px; }
 .panel-allocations .pivots li { display: inline; padding-left: 15px; padding-right: 15px }
 
-.panel-weather { display:none; }
+.panel-weather { display:block; }
 .panel-weather h1 { font-size: 90px; right: 10px; top: 30px; }
 .panel-weather p { font-size: 22px; padding-bottom: 5px; }
+.panel-weather .current {float:left; width:12%;}
 .panel-weather .current-icon { display:none; font-size: 200px; position: absolute; top: -30px; left: -15px; color: #EADDEF; }
-.panel-weather table { font-size: 40px; border-spacing: 30px 0; margin: 20px auto 0 auto; white-space: nowrap; }
-.panel-weather table th { font-weight: normal; text-align: right; }
-.panel-weather sup { font-size: small; }
+.panel-weather .hourly-wrap {float:right: width: 85%;}
+.panel-weather .hourly {display:flex;}
+.panel-weather h2 {width:100%; padding-top:22px;}
+.panel-weather ul { font-size: 40px; margin: 20px auto 0 auto; white-space: nowrap; list-style-type:none;  }
+.panel-weather ul li { font-weight: normal; text-align: left; margin-right:20px; padding:5px;}
+.panel-weather ul li.rain-0 {display:none;}
+.panel-weather sup { font-size: 20px; }
 .panel-weather [icon=wi-night-clear] { left: 20px; }
 .panel-weather [icon=wi-rain],
 .panel-weather [icon=wi-rain-mix],
@@ -57,12 +62,17 @@ jv-pivot { display: inline-block; background: #DEDEDE; border-radius: 40px; font
 .panel-messages .number-to-sms > i { position: absolute; bottom: 40px; right: 80px; font-size: 100px; color: #222224; }
 .panel-messages jv-pivot {background-color:#222222; color:white; }
 
-.panel-divvy-stations .divvy-stations > li { width: 300px; list-style: none; margin: 0 20px 20px 0; float: left; }
-.panel-divvy-stations .divvy-stations .divvy-pill { height: 90px; display: block; position: relative; color: #FFF; background: #4f4f4f; border-radius: 15px 15px; box-sizing: border-box; }
-.panel-divvy-stations .divvy-stations h2 { text-align: center; background:#222224; font-weight:normal; padding:5px; color: #fff; height: 65px; }
+.panel-divvy-stations {float:right; width:14%;}
+.panel-divvy-stations .divvy-stations {}
+.panel-divvy-stations .divvy-header { width: 100%; height: 100%; background-image : url("../images/divvy-logo.png"); background-size: 225px 65px; background-repeat: no-repeat; z-index: 10; background-position: center; }
+.panel-divvy-stations .divvy-stations > li { width: 100%; list-style: none; margin: 0 20px 20px 0; float: left; }
+.panel-divvy-stations .divvy-stations .divvy-pill { height: 70px; display: block; position: relative; color: #FFF; background: #4f4f4f; border-radius: 15px 15px; box-sizing: border-box; }
+.panel-divvy-stations .divvy-stations h2 { text-align: center; background:#222224; font-weight:normal; padding:5px; color: #fff; margin-bottom:0;}
+.panel-divvy-stations .divvy-stations h3 { text-align: center; font-size:60px; font-weight:bold; color: #fff; margin:0; padding:0; z-index:10;}
 .panel-divvy-stations .divvy-pill .background, .fill { position: absolute; bottom: 0; left: 0; }
-.panel-divvy-stations .divvy-pill .background { width: 100%; height: 100%; background-image : url("../images/divvy-logo.png"); background-size: 225px 65px; background-repeat: no-repeat; z-index: 10; background-position: center; }
 .panel-divvy-stations .divvy-pill .fill { width: 100%; background: #3EB4E6; border-radius: 0px 0px 15px 15px; }
+.panel-divvy-stations .divvy-pill .bikes { width: 100%; height:auto; position:relative; }
+
 
 @-webkit-keyframes slide {
     from { -webkit-transform: translateX(0%); }

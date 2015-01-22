@@ -54,22 +54,38 @@
         </ul>
     </div>
 
+    <div class="panel panel-divvy-stations" ng-controller="DivvyStationsController">
+        <ul class="divvy-stations">
+            <li ng-repeat="station in divvyStations" id="divvy-station-{{station.id}}">
+                <h2>{{station.stationName}}</h2>
+                <div class="divvy-pill">
+                    <div class="fill" ng-style="{'height' : station.percentAvailable + '%'}"></div>
+                    <div class="bikes"><h3>{{station.availableBikes}}</h3></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
     <div class="panel panel-weather" ng-controller="WeatherPanelController">
         <div class="wrapper" ng-if="forecast">
-            <jv-weather-icon class="current-icon" ng-attr-icon="{{forecast.currently.icon}}"></jv-weather-icon>
-            <h1>{{forecast.currently.temperature | number:0}}<i class="wi wi-fahrenheit"></i></h1>
-            <p>{{forecast.minutely.summary}}</p>
-            <p>{{forecast.hourly.summary}}</p>
-            <table>
-                <tbody>
-                <tr ng-repeat="hour in forecast.hourly.data | limitTo:3">
-                    <th>{{hour.time | moment:'h' }}&thinsp;<sup>{{hour.time | moment:'a' }}</sup></th>
-                    <td><jv-weather-icon ng-attr-icon="{{hour.icon}}"></jv-weather-icon></td>
-                    <td>{{hour.temperature | number:0}}<i class="wi wi-fahrenheit"></i></td>
-                    <td><i class="wi wi-sprinkles"></i>&thinsp;{{hour.precipProbability * 100}}<sup>%</sup></td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="current">
+                <jv-weather-icon class="current-icon" ng-attr-icon="{{forecast.currently.icon}}"></jv-weather-icon>
+                <h1>{{forecast.currently.temperature | number:0}}<i class="wi wi-fahrenheit"></i></h1>
+                <p>{{forecast.minutely.summary}}</p>
+                <p>{{forecast.hourly.summary}}</p>
+            </div>
+            <div class="hourly-wrap">
+                <h2>Hourly Forecast</h2>
+                <div class="hourly">
+                    <ul ng-repeat="hour in forecast.hourly.data | limitTo:14">
+                        <li>{{hour.time | moment:'h' }}&thinsp;<sup>{{hour.time | moment:'a' }}</sup> <jv-weather-icon ng-attr-icon="{{hour.icon}}"></jv-weather-icon></li>
+                        <li>{{hour.temperature | number:0}}<i class="wi wi-fahrenheit"></i></li>
+                        <li class="rain-{{hour.precipProbability * 100}}"><i class="wi wi-sprinkles"></i>&thinsp;{{hour.precipProbability * 100}}<sup>%</sup></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -84,17 +100,6 @@
         <div class="number-to-sms"><i class="fa fa-mobile"></i> {{numberToSMS}}</div>
     </div>
 
-    <div class="panel panel-divvy-stations" ng-controller="DivvyStationsController">
-        <ul class="divvy-stations">
-            <li ng-repeat="station in divvyStations" id="divvy-station-{{station.id}}">
-                <h2>{{station.stationName}}</h2>
-                <div class="divvy-pill">
-                    <div class="background"></div>
-                    <div class="fill" ng-style="{'height' : station.percentAvailable + '%'}"></div>
-                </div>
-            </li>
-        </ul>
-    </div>
 </div>
 
 <script>
