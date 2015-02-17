@@ -36,7 +36,7 @@ body { background: #222224; color: #F7F7F7; font-family: "Helvetica Neue"; }
 .panel-weather p { font-size: 22px; padding-bottom: 5px; }
 .panel-weather .current {float:left; width:12%;}
 .panel-weather .current-icon { display:none; font-size: 200px; position: absolute; top: -30px; left: -15px; color: #EADDEF; }
-.panel-weather .hourly-wrap {float:right: width: 85%;}
+.panel-weather .hourly-wrap {float:right; width: 85%;}
 .panel-weather .hourly {display:flex;}
 .panel-weather h2 {width:100%; padding-top:22px;}
 .panel-weather ul { font-size: 60px; margin: 20px auto 0 auto; white-space: nowrap; list-style-type:none;  }
