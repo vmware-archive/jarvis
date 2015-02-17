@@ -78,7 +78,7 @@
             <div class="hourly-wrap">
                 <h2>Hourly Forecast</h2>
                 <div class="hourly">
-                    <ul ng-repeat="hour in forecast.hourly.data | limitTo:14">
+                    <ul ng-repeat="hour in forecast.hourly.data | limitTo:11">
                         <li>{{hour.time | moment:'h' }}&thinsp;<sup>{{hour.time | moment:'a' }}</sup> <jv-weather-icon ng-attr-icon="{{hour.icon}}"></jv-weather-icon></li>
                         <li>{{hour.temperature | number:0}}<i class="wi wi-fahrenheit"></i></li>
                         <li class="rain-{{hour.precipProbability * 100}}"><i class="wi wi-sprinkles"></i>&thinsp;{{hour.precipProbability * 100}}<sup>%</sup></li>
